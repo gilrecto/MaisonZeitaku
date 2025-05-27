@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import shopify from 'vite-plugin-shopify';
 import cleanup from '@by-association-only/vite-plugin-shopify-clean';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   server: {
@@ -12,7 +13,11 @@ export default defineConfig({
   build: {
     emptyOutDir: false,
   },
-  plugins: [cleanup(), shopify({ versionNumbers: true })],
+  plugins: [
+    cleanup(),
+    shopify({ versionNumbers: true }),
+    tailwindcss(),
+  ],
   optimizeDeps: {
     include: [
       'swiper',
