@@ -1,61 +1,73 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "mz_banner_7BXHTy": {
+      "type": "mz_banner",
       "blocks": {
-        "heading": {
+        "heading_VMnm8D": {
           "type": "heading",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "type": "title",
+            "heading_text": "SS25 Online Now",
+            "heading_size": "ts:text-xl",
+            "text_transform": "ts:normal-case"
           }
         },
-        "button": {
+        "buttons_xHy9W6": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify:\/\/collections\/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "button_url": "",
+            "button_text": "Shop Men’s"
+          }
+        },
+        "buttons_Jxj6jH": {
+          "type": "buttons",
+          "settings": {
+            "button_url": "",
+            "button_text": "Shop Women’s"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "heading_VMnm8D",
+        "buttons_xHy9W6",
+        "buttons_Jxj6jH"
       ],
+      "name": "Banner",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
         "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "banner_type": "image",
+        "add_overlay": false,
+        "overlay_opacity": 0.1,
+        "banner_image": "shopify:\/\/shop_images\/hp_banner.jpg",
+        "banner_img_mb": "shopify:\/\/shop_images\/hp_banner_mob.jpg",
+        "content_alignment_h": "ts:md:items-center",
+        "content_alignment_v": "ts:md:justify-end",
+        "text_alignment": "center",
+        "content_alignment_h_mobile": "ts:items-center",
+        "content_alignment_v_mobile": "ts:justify-end",
+        "text_alignment_mobile": "center",
+        "top_spacing": 0,
+        "bottom_spacing": 14,
+        "top_spacing_mobile": 0,
+        "bottom_spacing_mobile": 10
       }
     },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
+        "collection": "all",
+        "products_to_show": 8,
         "title": "Featured products",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
         "columns_desktop": 4,
-        "color_scheme": "scheme-1",
+        "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
+        "color_scheme": "scheme-1",
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -63,13 +75,14 @@
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "2",
+        "swipe_on_mobile": false,
         "padding_top": 44,
         "padding_bottom": 36
       }
     }
   },
   "order": [
-    "image_banner",
+    "mz_banner_7BXHTy",
     "featured_collection"
   ]
 }
