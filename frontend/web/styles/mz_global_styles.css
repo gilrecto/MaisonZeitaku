@@ -30,6 +30,9 @@ body.page--index .section-header .header__icon {
 .header__menu-item.menu-item--sale {
 	@apply ts:!text-[#DA0000];
 }
+.header__heading-logo {
+	@apply ts:max-md:max-w-[15.5rem]
+}
 .header__icon .icon {
 	@apply ts:w-12 ts:h-12;
 }

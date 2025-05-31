@@ -5,15 +5,15 @@
   {% render 'header-drawer' %}
 {% endcomment %}
 
-<header-drawer data-breakpoint="{% if section.settings.menu_type_desktop == 'drawer' %}desktop{% else %}tablet{% endif %}">
+<header-drawer data-breakpoint="{% if section.settings.menu_type_desktop == 'drawer' %}desktop{% else %}tablet{% endif %}" class="ts:max-xl:!ml-0">
   <details id="Details-menu-drawer-container" class="menu-drawer-container">
     <summary
       class="header__icon header__icon--menu header__icon--summary link focus-inset"
       aria-label="{{ 'sections.header.menu' | t }}"
     >
       <span>
-        {{- 'icon-hamburger.svg' | inline_asset_content -}}
-        {{- 'icon-close.svg' | inline_asset_content -}}
+        {{- 'icon-mobile-menu.svg' | inline_asset_content -}}
+        {{- 'icon-close1.svg' | inline_asset_content -}}
       </span>
     </summary>
     <div id="menu-drawer" class="gradient menu-drawer motion-reduce color-{{ section.settings.menu_color_scheme }}">
@@ -135,11 +135,11 @@
               {%- endfor -%}
             </ul>
           </nav>
-          <div class="menu-drawer__utility-links">
+          <div class="menu-drawer__utility-links ts:!bg-transparent ts:!pb-[7vw] ts:!px-7 ts:flex ts:flex-col ts:gap-y-5">
             {%- if shop.customer_accounts_enabled -%}
               <a
                 href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
-                class="menu-drawer__account link focus-inset h5 ts:xl:hidden"
+                class="menu-drawer__account link focus-inset ts:xl:hidden ts:uppercase ts:gap-2 ts:!p-0"
                 rel="nofollow"
               >
                 {%- if section.settings.enable_customer_avatar -%}
@@ -166,6 +166,22 @@
                 -%}
               </a>
             {%- endif -%}
+            <a href="{{ routes.cart_url }}" class="menu-drawer__cart link focus-inset ts:xl:hidden ts:uppercase ts:gap-2 ts:!inline-flex ts:items-center ts:text-base ts:!no-underline" id="cart-icon-bubble">
+              {% if cart == empty %}
+                <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
+              {% else %}
+                <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
+              {% endif %}
+              <span class="">{{ 'templates.cart.cart' | t }}</span>
+              {%- if cart != empty -%}
+                <div class="cart-count-bubble">
+                  {%- if cart.item_count < 100 -%}
+                    <span aria-hidden="true">{{ cart.item_count }}</span>
+                  {%- endif -%}
+                  <span class="">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+                </div>
+              {%- endif -%}
+            </a>
             {%- if localization.available_countries or localization.available_languages -%}
               <div class="menu-drawer__localization header-localization">
                 {%- if localization.available_countries and localization.available_countries.size > 1 -%}

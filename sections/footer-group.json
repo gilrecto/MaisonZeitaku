@@ -4,19 +4,49 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "link_list_jLeTFG": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Customer Service",
+            "menu": "footer-menu-customer-service"
+          }
+        },
+        "link_list_8fyxp3": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Company",
+            "menu": "footer-menu-company"
+          }
+        },
+        "link_list_XKVDfK": {
+          "type": "link_list",
+          "settings": {
+            "heading": "SOCIALS",
+            "menu": "socials"
+          }
+        }
+      },
+      "block_order": [
+        "link_list_jLeTFG",
+        "link_list_8fyxp3",
+        "link_list_XKVDfK"
+      ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
+        "color_scheme": "scheme-3",
+        "newsletter_enable": false,
         "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
-        "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "payment_enable": true,
-        "show_policy": true,
+        "logo": "shopify:\/\/shop_images\/mz_logo_white.png",
+        "footer_badge": "shopify:\/\/shop_images\/authentic.png",
+        "enable_follow_on_shop": false,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": false,
+        "show_policy": false,
         "margin_top": 0,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 60,
+        "padding_bottom": 32
       }
     }
   },

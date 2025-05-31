@@ -245,7 +245,7 @@
       "pages": "Pages"
     },
     "cart": {
-      "cart": "Cart"
+      "cart": "Shopping bag"
     },
     "contact": {
       "form": {
@@ -421,7 +421,7 @@
       "delete": "Delete",
       "delete_confirm": "Are you sure you wish to delete this address?"
     },
-    "log_in": "Log in",
+    "log_in": "Login or Create account",
     "log_out": "Log out",
     "login_page": {
       "cancel": "Cancel",
