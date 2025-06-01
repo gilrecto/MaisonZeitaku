@@ -44,6 +44,16 @@
 		<div class="overlay ts:relative ts:z-[1] ts:row-span-full ts:col-span-full ts:bg-black ts:opacity-[var(--overlay-opacity)] ts:pointer-events:none">&nbsp;</div>
 	{%- endif -%}
 
+	{%- for block in section.blocks -%}
+		{%- if block.type == 'caption_link' and block.settings.label != blank -%}
+			<div class="caption-wrapper ts:absolute ts:xl:top-28 ts:md:top-20 ts:top-16 ts:w-full ts:z-[3] ts:text-center{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {{ block.shopify_attributes }}>
+				<a href="{{ block.settings.link }}" class="caption ts:!text-sm ts:font-semibold">
+					{{ block.settings.label }}
+				</a>
+			</div>
+		{%- endif -%}
+	{%- endfor -%}
+
 	<div class="banner-media banner-media--{{ setting.banner_type }} ts:relative ts:w-full ts:h-auto ts:row-span-full ts:col-span-full ts:pointer-events:none">
 		{%- if setting.banner_type == 'video' and setting.video != blank -%}
 			{%- if setting.poster != blank -%}
@@ -72,7 +82,7 @@
 			-%}
 
 			<div class="banner-img-wrapper ts:w-full ts:h-full ts:overflow-hidden">
-				<picture class="media ts:w-full ts:h-full">
+				<picture class="media ts:w-full ts:h-full{% if setting.enable_anim %} scroll-trigger animate--zoom-out scroll-trigger--offscreen{% endif %}">
 						<source srcset="{{ mobile_image }}" media="(max-width: 767px)"/>
 						{{
 							image
@@ -85,7 +95,7 @@
 	</div>
 
 	<div class="banner-contents ts:relative ts:z-[2] ts:flex ts:flex-col {{ setting.content_alignment_h }} {{ setting.content_alignment_h_mobile }} {{ setting.content_alignment_v }} {{ setting.content_alignment_v_mobile }} ts:pt-[var(--top-spacing)] ts:pb-[var(--bottom-spacing)] text-align ts:row-span-full ts:col-span-full ts:px-8">
-		<div class="contents:wrapper ts:w-auto ts:md:p-8 ts:p-4{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+		<div class="contents-wrapper ts:w-auto ts:md:p-8 ts:p-4{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
 			{%- for block in section.blocks -%}
 				{% case block.type %}
 					{% when 'heading' %}
@@ -190,6 +200,12 @@
 				"min": 0,
 				"max": 1,
 				"step": 0.1
+			},
+			{
+				"type": "checkbox",
+				"id": "enable_anim",
+				"label": "Animate Image",
+				"default": false
 			},
 			{
 				"type": "header",
@@ -427,31 +443,35 @@
 						"label": "Heading Size",
 						"options": [
 							{
-								"value": "ts:text-3xl",
+								"value": "ts:!text-3xl",
+								"label": "3X Large"
+							},
+							{
+								"value": "ts:!text-2xl",
 								"label": "2X Large"
 							},
 							{
-								"value": "ts:text-2xl",
+								"value": "ts:!text-xl",
 								"label": "Extra Large"
 							},
 							{
-								"value": "ts:text-xl",
+								"value": "ts:!text-lg",
 								"label": "Large"
 							},
 							{
-								"value": "ts:text-base",
+								"value": "ts:!text-base",
 								"label": "Medium"
 							},
 							{
-								"value": "ts:text-sm",
+								"value": "ts:!text-sm",
 								"label": "Small"
 							},
 							{
-								"value": "ts:text-xs",
+								"value": "ts:!text-xs",
 								"label": "Extra Small"
 							}
 						],
-						"default": "ts:text-2xl"
+						"default": "ts:!text-2xl"
 					},
 					{
 						"type": "select",
@@ -507,6 +527,24 @@
 						"id": "button_text",
 						"label": "Button Text",
 						"default": "Button"
+					}
+				]
+			},
+			{
+				"type": "caption_link",
+				"name": "Caption",
+				"limit": 1,
+				"settings": [
+					{
+						"type": "text",
+						"id": "label",
+						"label": "Caption Text",
+						"default": "Caption"
+					},
+					{
+						"type": "url",
+						"id": "link",
+						"label": "Caption URL"
 					}
 				]
 			}

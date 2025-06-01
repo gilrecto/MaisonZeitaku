@@ -13,7 +13,7 @@
     "spacing_grid_horizontal": 4,
     "spacing_grid_vertical": 32,
     "animations_reveal_on_scroll": true,
-    "animations_hover_elements": "none",
+    "animations_hover_elements": "default",
     "buttons_border_thickness": 1,
     "buttons_border_opacity": 100,
     "buttons_radius": 0,
@@ -48,8 +48,8 @@
     "card_shadow_blur": 5,
     "collection_card_style": "standard",
     "collection_card_image_padding": 0,
-    "collection_card_text_alignment": "left",
-    "collection_card_color_scheme": "scheme-2",
+    "collection_card_text_alignment": "center",
+    "collection_card_color_scheme": "scheme-1",
     "collection_card_border_thickness": 0,
     "collection_card_border_opacity": 10,
     "collection_card_corner_radius": 0,
@@ -182,13 +182,13 @@
       },
       "scheme-5": {
         "settings": {
-          "background": "#334fb4",
+          "background": "#ffffff",
           "background_gradient": "",
           "text": "#ffffff",
-          "button": "#ffffff",
-          "button_label": "#334fb4",
-          "secondary_button_label": "#ffffff",
-          "shadow": "#121212"
+          "button": "#000000",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#000000",
+          "shadow": "#000000"
         }
       }
     }

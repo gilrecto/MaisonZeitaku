@@ -3,6 +3,9 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  #shopify-section-{{ section.id }} {
+    --text-align: {{ section.settings.text_alignment | default: 'left' }};
+  }
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -27,7 +30,7 @@
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <div class="collection-list-wrapper page-width isolate{% if show_mobile_slider %} page-width-desktop{% endif %}{% if section.settings.title == blank %} no-heading{% endif %}{% if section.settings.show_view_all == false or section.blocks.size > collections.size %} no-mobile-link{% endif %} section-{{ section.id }}-padding">
     {%- unless section.settings.title == blank -%}
-      <div class="title-wrapper-with-link{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% else %} title-wrapper--self-padded-mobile{% endif %} title-wrapper--no-top-margin">
+      <div class="{% if section.settings.show_view_all %}title-wrapper-with-link{% endif %} text-align{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% else %} title-wrapper--self-padded-mobile{% endif %} title-wrapper--no-top-margin ts:md:mb-20 ts:mb-16">
         <h2
           id="SectionHeading-{{ section.id }}"
           class="collection-list-title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -75,6 +78,7 @@
             {% render 'card-collection',
               card_collection: block.settings.collection,
               media_aspect_ratio: section.settings.image_ratio,
+              custom_img: block.settings.image,
               columns: columns,
               placeholder_image: placeholder_image
             %}
@@ -152,30 +156,44 @@
     {
       "type": "select",
       "id": "heading_size",
+      "label": "Heading Size",
       "options": [
         {
-          "value": "h2",
-          "label": "t:sections.all.heading_size.options__1.label"
+          "value": "ts:!text-3xl",
+          "label": "3X Large"
         },
         {
-          "value": "h1",
-          "label": "t:sections.all.heading_size.options__2.label"
+          "value": "ts:!text-2xl",
+          "label": "2X Large"
         },
         {
-          "value": "h0",
-          "label": "t:sections.all.heading_size.options__3.label"
+          "value": "ts:!text-xl",
+          "label": "Extra Large"
         },
         {
-          "value": "hxl",
-          "label": "t:sections.all.heading_size.options__4.label"
+          "value": "ts:!text-lg",
+          "label": "Large"
         },
         {
-          "value": "hxxl",
-          "label": "t:sections.all.heading_size.options__5.label"
+          "value": "ts:!text-base",
+          "label": "Medium"
+        },
+        {
+          "value": "ts:!text-sm",
+          "label": "Small"
+        },
+        {
+          "value": "ts:!text-xs",
+          "label": "Extra Small"
         }
       ],
-      "default": "h1",
-      "label": "t:sections.all.heading_size.label"
+      "default": "ts:!text-2xl"
+    },
+    {
+      "type": "text_alignment",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "default": "left"
     },
     {
       "type": "header",
@@ -284,6 +302,12 @@
           "type": "collection",
           "id": "collection",
           "label": "t:sections.collection-list.blocks.featured_collection.settings.collection.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Collection Image",
+          "info": "Custom collection image."
         }
       ]
     }

@@ -3255,6 +3255,16 @@ details-disclosure > details {
   transition: scale var(--duration-short) linear;
   scale: var(--zoom-in-ratio);
 }
+.animate--zoom-out {
+  --zoom-out-ratio: 1.12;
+}
+
+.animate--zoom-out > img,
+.animate--zoom-out > .svg-wrapper {
+  transform: scale(var(--zoom-out-ratio, 1.12));
+  transition: transform 1.2s ease-out;
+  will-change: transform;
+}
 
 /* Animations */
 

@@ -1,6 +1,7 @@
 const SCROLL_ANIMATION_TRIGGER_CLASSNAME = 'scroll-trigger';
 const SCROLL_ANIMATION_OFFSCREEN_CLASSNAME = 'scroll-trigger--offscreen';
 const SCROLL_ZOOM_IN_TRIGGER_CLASSNAME = 'animate--zoom-in';
+const SCROLL_ZOOM_OUT_TRIGGER_CLASSNAME = 'animate--zoom-out';
 const SCROLL_ANIMATION_CANCEL_CLASSNAME = 'scroll-trigger--cancel';
 
 // Scroll in animation logic
@@ -71,6 +72,44 @@ function initializeScrollZoomAnimationTrigger() {
   });
 }
 
+// Zoom out animation logic
+function initializeScrollZoomOutAnimationTrigger() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const elements = Array.from(document.getElementsByClassName(SCROLL_ZOOM_OUT_TRIGGER_CLASSNAME));
+  if (elements.length === 0) return;
+
+  const scaleAmount = 0.2 / 100;
+
+  elements.forEach((element) => {
+    let hasAnimated = false;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          hasAnimated = true;
+          animateZoomOutOnce(element);
+          observer.unobserve(element);
+        }
+      });
+    }, {
+      threshold: 0.8
+    });
+
+    observer.observe(element);
+  });
+
+  function animateZoomOutOnce(element) {
+    const percentage = percentageSeen(element);
+    const scale = 1.12 - scaleAmount * percentage;
+    element.style.setProperty('--zoom-out-ratio', Math.max(scale, 1));
+
+    setTimeout(() => {
+      element.style.setProperty('--zoom-out-ratio', 1);
+    }, 300);
+  }
+}
+
 function percentageSeen(element) {
   const viewportHeight = window.innerHeight;
   const scrollY = window.scrollY;
@@ -94,6 +133,7 @@ function percentageSeen(element) {
 window.addEventListener('DOMContentLoaded', () => {
   initializeScrollAnimationTrigger();
   initializeScrollZoomAnimationTrigger();
+  initializeScrollZoomOutAnimationTrigger();
 });
 
 if (Shopify.designMode) {

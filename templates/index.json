@@ -8,7 +8,7 @@
           "settings": {
             "type": "title",
             "heading_text": "SS25 Online Now",
-            "heading_size": "ts:text-xl",
+            "heading_size": "ts:!text-xl",
             "text_transform": "ts:normal-case"
           }
         },
@@ -38,6 +38,7 @@
         "banner_type": "image",
         "add_overlay": false,
         "overlay_opacity": 0.1,
+        "enable_anim": true,
         "banner_image": "shopify:\/\/shop_images\/hp_banner.jpg",
         "banner_img_mb": "shopify:\/\/shop_images\/hp_banner_mob.jpg",
         "content_alignment_h": "ts:md:items-center",
@@ -57,18 +58,18 @@
       "settings": {
         "collection": "all",
         "products_to_show": 8,
-        "title": "Featured products",
+        "title": "Explore Our Collections",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "columns_desktop": 4,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
+        "columns_desktop": 3,
+        "enable_desktop_slider": true,
+        "full_width": true,
+        "show_view_all": false,
         "view_all_style": "solid",
         "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
+        "image_ratio": "portrait",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
@@ -79,10 +80,189 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
+    },
+    "collection_list_ERwMp8": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_z8jbcj": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "women-s-shoes",
+            "image": "shopify:\/\/shop_images\/collection_img1.png"
+          }
+        },
+        "featured_collection_XyKJ6j": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "men-s-shoes",
+            "image": "shopify:\/\/shop_images\/collection_img2.png"
+          }
+        },
+        "featured_collection_pbTNcd": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "wome-s-bag",
+            "image": "shopify:\/\/shop_images\/collection_img3.png"
+          }
+        },
+        "featured_collection_ELCJGQ": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "men-s-bag",
+            "image": "shopify:\/\/shop_images\/collection_img4.png"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_z8jbcj",
+        "featured_collection_XyKJ6j",
+        "featured_collection_pbTNcd",
+        "featured_collection_ELCJGQ"
+      ],
+      "custom_css": [
+        ".collection-list {padding: 0;}",
+        ".grid {--grid-mobile-horizontal-spacing: 1.5rem; --grid-mobile-vertical-spacing: 4rem;}",
+        "@media only screen and (min-width: 750px) {.grid {--grid-desktop-horizontal-spacing: 3rem; }}"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Expertly Curated by Maison Zeitaku",
+        "heading_size": "ts:!text-lg",
+        "text_alignment": "center",
+        "image_ratio": "portrait",
+        "columns_desktop": 4,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "mz_banner_F9wpjK": {
+      "type": "mz_banner",
+      "blocks": {
+        "caption_link_rVcJE9": {
+          "type": "caption_link",
+          "settings": {
+            "label": "Women",
+            "link": "#"
+          }
+        },
+        "heading_CL9CHU": {
+          "type": "heading",
+          "settings": {
+            "type": "title",
+            "heading_text": "Explore Our Outerwear",
+            "heading_size": "ts:!text-lg",
+            "text_transform": "ts:normal-case"
+          }
+        },
+        "buttons_6LN4pj": {
+          "type": "buttons",
+          "settings": {
+            "button_url": "#",
+            "button_text": "Explore Now"
+          }
+        }
+      },
+      "block_order": [
+        "caption_link_rVcJE9",
+        "heading_CL9CHU",
+        "buttons_6LN4pj"
+      ],
+      "custom_css": [
+        ".media-banner {padding: 0 2rem; margin-bottom: 1rem;}",
+        ".contents-wrapper > h2,.caption-wrapper a {color: rgb(var(--color-background));}",
+        "@media only screen and (min-width: 768px) {.media-banner {padding: 0 3rem; }}",
+        "@media only screen and (max-width: 767px) {.caption-wrapper {top: 50%; transform: translateY(-50%) !important; }}"
+      ],
+      "name": "Banner",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "banner_type": "image",
+        "add_overlay": false,
+        "overlay_opacity": 0.5,
+        "enable_anim": true,
+        "banner_image": "shopify:\/\/shop_images\/womens_banner.jpg",
+        "banner_img_mb": "shopify:\/\/shop_images\/womens_banner_mob.jpg",
+        "content_alignment_h": "ts:md:items-center",
+        "content_alignment_v": "ts:md:justify-end",
+        "text_alignment": "center",
+        "content_alignment_h_mobile": "ts:items-center",
+        "content_alignment_v_mobile": "ts:justify-end",
+        "text_alignment_mobile": "center",
+        "top_spacing": 0,
+        "bottom_spacing": 14,
+        "top_spacing_mobile": 0,
+        "bottom_spacing_mobile": 5
+      }
+    },
+    "mz_banner_TUwN4M": {
+      "type": "mz_banner",
+      "blocks": {
+        "caption_link_mALhHe": {
+          "type": "caption_link",
+          "settings": {
+            "label": "Men",
+            "link": "#"
+          }
+        },
+        "heading_Rga9JT": {
+          "type": "heading",
+          "settings": {
+            "type": "title",
+            "heading_text": "Explore Our Footwear",
+            "heading_size": "ts:!text-lg",
+            "text_transform": "ts:normal-case"
+          }
+        },
+        "buttons_LwBCGE": {
+          "type": "buttons",
+          "settings": {
+            "button_url": "#",
+            "button_text": "Explore Now"
+          }
+        }
+      },
+      "block_order": [
+        "caption_link_mALhHe",
+        "heading_Rga9JT",
+        "buttons_LwBCGE"
+      ],
+      "custom_css": [
+        ".media-banner {padding: 0 2rem;}",
+        ".contents-wrapper > h2,.caption-wrapper a {color: rgb(var(--color-background));}",
+        "@media only screen and (min-width: 768px) {.media-banner {padding: 0 3rem; }}",
+        "@media only screen and (max-width: 767px) {.caption-wrapper {top: 50%; transform: translateY(-50%) !important; }}"
+      ],
+      "name": "Banner",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "banner_type": "image",
+        "add_overlay": false,
+        "overlay_opacity": 0.5,
+        "enable_anim": true,
+        "banner_image": "shopify:\/\/shop_images\/mens_banner.jpg",
+        "banner_img_mb": "shopify:\/\/shop_images\/mens_banner_mob.jpg",
+        "content_alignment_h": "ts:md:items-center",
+        "content_alignment_v": "ts:md:justify-end",
+        "text_alignment": "center",
+        "content_alignment_h_mobile": "ts:items-center",
+        "content_alignment_v_mobile": "ts:justify-end",
+        "text_alignment_mobile": "center",
+        "top_spacing": 0,
+        "bottom_spacing": 14,
+        "top_spacing_mobile": 0,
+        "bottom_spacing_mobile": 5
+      }
     }
   },
   "order": [
     "mz_banner_7BXHTy",
-    "featured_collection"
+    "featured_collection",
+    "collection_list_ERwMp8",
+    "mz_banner_F9wpjK",
+    "mz_banner_TUwN4M"
   ]
 }
