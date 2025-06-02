@@ -2,6 +2,13 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  #shopify-section-{{ section.id }} {
+		--text-align: {{ section.settings.text_alignment | default: 'center' }};
+		--page-width: {{ section.settings.container_width | append: 'px' }};
+		{% if section.settings.full_width %}
+		  --page-width: 100%;
+		{% endif %}
+	}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -25,13 +32,13 @@
 
 <div class="multicolumn color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} no-heading{% endif %}">
   <div
-    class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+    class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}{% if section.settings.full_width %} ts:md:!px-0{% endif %}"
     {% if settings.animations_reveal_on_scroll %}
       data-cascade
     {% endif %}
   >
     {%- unless section.settings.title == blank -%}
-      <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin multicolumn__title">
+      <div class="{% if section.settings.button_label != blank and show_mobile_slider %}title-wrapper-with-link{% endif %} text-align title-wrapper--self-padded-mobile title-wrapper--no-top-margin multicolumn__title ts:lg:mb-20 ts:mb-12">
         <h2 class="title inline-richtext {{ section.settings.heading_size }}">
           {{ section.settings.title }}
         </h2>
@@ -44,7 +51,7 @@
     {%- endunless -%}
     <slider-component class="slider-mobile-gutter">
       <ul
-        class="multicolumn-list contains-content-container grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %}"
+        class="multicolumn-list contains-content-container grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %} ts:max-md:!gap-y-10"
         id="Slider-{{ section.id }}"
         role="list"
       >
@@ -82,7 +89,7 @@
                 {% endif %}
                 <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} multicolumn-card-spacing{% endif %}">
                   <div
-                    class="media media--transparent media--{{ section.settings.image_ratio }}"
+                    class="media media--transparent media--{{ section.settings.image_ratio }}{% if section.settings.enable_anim %} scroll-trigger animate--zoom-out scroll-trigger--offscreen{% endif %}"
                     {% if section.settings.image_ratio == 'adapt' %}
                       style="padding-bottom: {{ 1 | divided_by: highest_ratio | times: 100 }}%;"
                     {% endif %}
@@ -120,14 +127,14 @@
               {%- endif -%}
               <div class="multicolumn-card__info">
                 {%- if block.settings.title != blank -%}
-                  <h3 class="inline-richtext">{{ block.settings.title }}</h3>
+                  <h3 class="inline-richtext ts:!text-sm ts:font-semibold">{{ block.settings.title }}</h3>
                 {%- endif -%}
                 {%- if block.settings.text != blank -%}
-                  <div class="rte">{{ block.settings.text }}</div>
+                  <div class="rte ts:!text-sm">{{ block.settings.text }}</div>
                 {%- endif -%}
                 {%- if block.settings.link_label != blank -%}
                   <a
-                    class="link animate-arrow"
+                    class="button button--primary ts:!border"
                     {% if block.settings.link == blank %}
                       role="link" aria-disabled="true"
                     {% else %}
@@ -135,9 +142,9 @@
                     {% endif %}
                   >
                     {{- block.settings.link_label | escape -}}
-                    <span class="svg-wrapper"
-                      ><span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span></span
-                    >
+                    {% comment %} <span class="svg-wrapper">
+                      <span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span>
+                    </span> {% endcomment %}
                   </a>
                 {%- endif -%}
               </div>
@@ -208,30 +215,44 @@
     {
       "type": "select",
       "id": "heading_size",
+      "label": "Heading Size",
       "options": [
         {
-          "value": "h2",
-          "label": "t:sections.all.heading_size.options__1.label"
+          "value": "ts:!text-3xl",
+          "label": "3X Large"
         },
         {
-          "value": "h1",
-          "label": "t:sections.all.heading_size.options__2.label"
+          "value": "ts:!text-2xl",
+          "label": "2X Large"
         },
         {
-          "value": "h0",
-          "label": "t:sections.all.heading_size.options__3.label"
+          "value": "ts:!text-xl",
+          "label": "Extra Large"
         },
         {
-          "value": "hxl",
-          "label": "t:sections.all.heading_size.options__4.label"
+          "value": "ts:!text-lg",
+          "label": "Large"
         },
         {
-          "value": "hxxl",
-          "label": "t:sections.all.heading_size.options__5.label"
+          "value": "ts:!text-base",
+          "label": "Medium"
+        },
+        {
+          "value": "ts:!text-sm",
+          "label": "Small"
+        },
+        {
+          "value": "ts:!text-xs",
+          "label": "Extra Small"
         }
       ],
-      "default": "h1",
-      "label": "t:sections.all.heading_size.label"
+      "default": "ts:!text-2xl"
+    },
+    {
+      "type": "text_alignment",
+      "id": "text_alignment",
+      "label": "Heading Text Alignment",
+      "default": "center"
     },
     {
       "type": "header",
@@ -282,6 +303,12 @@
       "label": "t:sections.multicolumn.settings.image_ratio.label"
     },
     {
+      "type": "checkbox",
+      "id": "enable_anim",
+      "label": "Animate Image",
+      "default": false
+    },
+    {
       "type": "header",
       "content": "t:sections.multicolumn.settings.header_button.content"
     },    
@@ -300,7 +327,23 @@
     {
       "type": "header",
       "content": "t:sections.multicolumn.settings.header_layout.content"
-    },     
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container Width",
+      "min": 1200,
+      "max": 2000,
+      "step": 10,
+      "unit": "px",
+      "default": 1920
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": false,
+      "label": "Full width Section"
+    },
     {
       "type": "range",
       "id": "columns_desktop",

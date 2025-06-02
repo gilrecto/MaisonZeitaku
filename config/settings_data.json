@@ -1,17 +1,8 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "current": {
-    "logo": "shopify://shop_images/mz_logo.png",
+    "logo": "shopify:\/\/shop_images\/mz_logo.png",
     "logo_width": 290,
-    "favicon": "shopify://shop_images/mz_logo_white.png",
+    "favicon": "shopify:\/\/shop_images\/mz_logo_white.png",
     "type_header_font": "assistant_n6",
     "heading_scale": 100,
     "type_body_font": "assistant_n4",
@@ -46,6 +37,7 @@
     "inputs_shadow_blur": 5,
     "card_style": "standard",
     "card_image_padding": 0,
+    "product_img_anim": true,
     "card_text_alignment": "left",
     "card_color_scheme": "scheme-2",
     "card_border_thickness": 0,
@@ -57,6 +49,7 @@
     "card_shadow_blur": 5,
     "collection_card_style": "standard",
     "collection_card_image_padding": 0,
+    "collection_img_anim": true,
     "collection_card_text_alignment": "center",
     "collection_card_color_scheme": "scheme-1",
     "collection_card_border_thickness": 0,
@@ -109,7 +102,7 @@
     "sale_badge_color_scheme": "scheme-4",
     "sold_out_badge_color_scheme": "scheme-3",
     "brand_headline": "",
-    "brand_description": "<p></p>",
+    "brand_description": "<p><\/p>",
     "brand_image_width": 50,
     "social_facebook_link": "",
     "social_instagram_link": "",
@@ -129,6 +122,7 @@
     "show_cart_note": false,
     "cart_drawer_collection": "",
     "cart_color_scheme": "scheme-1",
+    "enable_anim": true,
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
@@ -358,7 +352,7 @@
       "sale_badge_color_scheme": "scheme-4",
       "sold_out_badge_color_scheme": "scheme-3",
       "brand_headline": "",
-      "brand_description": "<p></p>",
+      "brand_description": "<p><\/p>",
       "brand_image_width": 100,
       "social_twitter_link": "",
       "social_facebook_link": "",

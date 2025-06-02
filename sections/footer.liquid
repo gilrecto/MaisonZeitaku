@@ -351,7 +351,7 @@
   </div>
 
   {%- if section.settings.footer_badge != blank -%}
-    <div class="footer-badge--wrapper ts:absolute ts:lg:bottom-12 ts:bottom-8 ts:lg:right-12 ts:right-8">
+    <div class="footer-badge--wrapper ts:absolute ts:lg:bottom-12 ts:bottom-8 ts:lg:right-12 ts:right-8 ts:overflow-hidden">
       {%- assign image = section.settings.footer_badge -%}
        {{
           image
@@ -361,7 +361,7 @@
             widths: '50, 100, 150, 200, 300, 400, 550, 800, 1100',
             height: 160,
             width: 160,
-            class: "ts:lg:w-3xs ts:w-40"
+            class: "ts:lg:w-3xs ts:w-40 ts:motion-safe:animate-[spin_15s_linear_infinite]"
         }}
     </div>
   {%- endif -%}

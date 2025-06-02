@@ -64,7 +64,7 @@
         -%}
 
         <div class="card__media">
-          <div class="media media--transparent media--hover-effect">
+          <div class="media media--transparent media--hover-effect{% if settings.collection_img_anim %} scroll-trigger animate--zoom-out scroll-trigger--offscreen{% endif %}">
             <img
               srcset="
                 {%- if image.width >= 165 -%}{{ image | image_url: width: 165 }} 165w,{%- endif -%}

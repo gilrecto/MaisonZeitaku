@@ -102,10 +102,10 @@
   width: auto;
 }
 
-.multicolumn-list__item.center .media--adapt img {
+/* .multicolumn-list__item.center .media--adapt img {
   left: 50%;
   transform: translateX(-50%);
-}
+} */
 
 @media screen and (max-width: 749px) {
   .multicolumn-list {

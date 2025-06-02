@@ -53,32 +53,54 @@
         "bottom_spacing_mobile": 10
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "mz_featured_collection_wpg6Mp": {
+      "type": "mz_featured_collection",
+      "custom_css": [
+        ".card__content .price {display: none;}"
+      ],
+      "name": " Featured Collection",
       "settings": {
-        "collection": "all",
-        "products_to_show": 8,
+        "color_scheme": "",
         "title": "Explore Our Collections",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 3,
-        "enable_desktop_slider": true,
-        "full_width": true,
-        "show_view_all": false,
+        "title_size": "ts:!text-lg",
+        "collection": "frontpage",
+        "view_all": false,
+        "prodoct_limit": 6,
+        "view_link_label": "View Collection",
+        "text_alignment": "center",
         "view_all_style": "solid",
-        "color_scheme": "scheme-1",
+        "container_width": 1540,
+        "full_width": false,
+        "box_color_scheme": "",
+        "bordered": false,
         "image_ratio": "portrait",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 36
+        "d_slides": 3,
+        "l_slides": 3,
+        "t_slides": 3,
+        "m_slides": 2,
+        "d_space": 165,
+        "l_space": 140,
+        "t_space": 75,
+        "m_space": 15,
+        "enable_loop": true,
+        "center_mode": true,
+        "mousewheel": false,
+        "enable_autoplay": false,
+        "autoplay_speed": 5000,
+        "enable_navigation": true,
+        "enable_pagination": false,
+        "enable_scrollbar": true,
+        "scrollbar_hide": true,
+        "destroy_swiper": true,
+        "pad_desk": 100,
+        "pad_lap": 80,
+        "pad_tab": 60,
+        "pad_mob": 40
       }
     },
     "collection_list_ERwMp8": {
@@ -135,7 +157,7 @@
         "show_view_all": false,
         "columns_mobile": "2",
         "swipe_on_mobile": false,
-        "padding_top": 100,
+        "padding_top": 60,
         "padding_bottom": 100
       }
     },
@@ -256,13 +278,75 @@
         "top_spacing_mobile": 0,
         "bottom_spacing_mobile": 5
       }
+    },
+    "multicolumn_jiBft6": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_hb9REx": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/service1.png",
+            "title": "Bespoke Personalization",
+            "text": "<p>Make your Maison Zeitaku piece truly your own. Select bags, luggage, belts, leather accessories, and pet collection items can be embossed with your initials, creating a signature touch of exclusivity.<\/p>",
+            "link_label": "Explore Personalization",
+            "link": "#"
+          }
+        },
+        "column_ynaVcm": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/service2.png",
+            "title": "Reserve Your Appointment",
+            "text": "<p>Enjoy a personalized shopping experience with a dedicated Style Advisor. Book an appointment at your preferred boutique, where an exclusive selection of Maison Zeitaku pieces awaits you for a private fitting and styling session.<\/p>",
+            "link_label": "Reserve Your Appointment",
+            "link": "#"
+          }
+        },
+        "column_kkjAqJ": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/service3.png",
+            "title": "Boutique Pickup",
+            "text": "<p>Shop online and collect your order at a Maison Zeitaku boutique of your choice—seamlessly blending digital convenience with in-store luxury.<\/p>",
+            "link_label": "Learn More",
+            "link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "column_hb9REx",
+        "column_ynaVcm",
+        "column_kkjAqJ"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "Maison Zeitaku Services",
+        "heading_size": "ts:!text-lg",
+        "text_alignment": "center",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "enable_anim": true,
+        "button_label": "",
+        "button_link": "",
+        "container_width": 1540,
+        "full_width": false,
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 88,
+        "padding_bottom": 100
+      }
     }
   },
   "order": [
     "mz_banner_7BXHTy",
-    "featured_collection",
+    "mz_featured_collection_wpg6Mp",
     "collection_list_ERwMp8",
     "mz_banner_F9wpjK",
-    "mz_banner_TUwN4M"
+    "mz_banner_TUwN4M",
+    "multicolumn_jiBft6"
   ]
 }

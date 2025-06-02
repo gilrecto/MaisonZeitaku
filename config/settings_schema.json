@@ -520,6 +520,12 @@
         "default": 0
       },
       {
+				"type": "checkbox",
+				"id": "product_img_anim",
+				"label": "Animate Image",
+				"default": false
+			},
+      {
         "type": "select",
         "id": "card_text_alignment",
         "options": [
@@ -654,6 +660,12 @@
         "label": "t:settings_schema.global.settings.image_padding.label",
         "default": 0
       },
+      {
+				"type": "checkbox",
+				"id": "collection_img_anim",
+				"label": "Animate Image",
+				"default": false
+			},
       {
         "type": "select",
         "id": "collection_card_text_alignment",
