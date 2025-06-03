@@ -28,7 +28,7 @@
   endif
 -%}
 
-<div class="facets-container{% if filter_type == 'drawer' %} facets-container-drawer{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+<div class="facets-container{% if filter_type == 'drawer' %} facets-container-drawer{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %} ts:!flex-row-reverse ts:mb-4">
   {%- if filter_type == 'vertical' or filter_type == 'horizontal' -%}
     <facet-filters-form class="facets small-hide">
       <form
@@ -440,7 +440,7 @@
   {%- endif -%}
   {% comment %}  Drawer and mobile filter {% endcomment %}
   <menu-drawer
-    class="mobile-facets__wrapper{% if filter_type == 'horizontal' or filter_type == 'vertical' %} medium-hide large-up-hide{% endif %}"
+    class="mobile-facets__wrapper{% if filter_type == 'horizontal' or filter_type == 'vertical' %} medium-hide large-up-hide{% endif %} ts:!mx-0 ts:!justify-end"
     data-breakpoint="mobile"
   >
     <details class="mobile-facets__disclosure disclosure-has-popup">
@@ -449,7 +449,7 @@
           <span class="svg-wrapper">
             {{- 'icon-filter.svg' | inline_asset_content -}}
           </span>
-          <span class="mobile-facets__open-label button-label medium-hide large-up-hide">
+          <span class="mobile-facets__open-label button-label medium-hide large-up-hide ts:!text-sm ts:uppercase ts:!ml-5">
             {%- if enable_filtering and enable_sorting -%}
               {{ 'products.facets.filter_and_sort' | t }}
             {%- elsif enable_filtering -%}
@@ -458,7 +458,7 @@
               {{ 'products.facets.sort_button' | t }}
             {%- endif -%}
           </span>
-          <span class="mobile-facets__open-label button-label small-hide">
+          <span class="mobile-facets__open-label button-label small-hide ts:!text-sm ts:uppercase ts:!ml-5">
             {%- if enable_filtering -%}
               {{ 'products.facets.filter_button' | t }}
             {%- endif -%}
@@ -869,7 +869,7 @@
     </facet-filters-form>
   {%- endif -%}
   <div
-    class="product-count light{% if filter_type == 'vertical' or filter_type == 'horizontal' %} medium-hide large-up-hide{% endif %}"
+    class="product-count light{% if filter_type == 'vertical' or filter_type == 'horizontal' %} medium-hide large-up-hide{% endif %} ts:!m-0"
     role="status"
   >
     <h2 class="product-count__text text-body">

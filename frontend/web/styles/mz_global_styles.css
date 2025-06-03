@@ -126,6 +126,12 @@ swiper-slider .swiper-scrollbar-drag {
 .featured-collection .card__heading {
 	@apply ts:font-semibold ts:uppercase;
 }
+.card-wrapper.quickadd-enabled .card__heading a:after {
+	@apply ts:content-none;
+}
+.price .price-item .price .price-item {
+	@apply ts:lowercase;
+}
 
 
 @media only screen and (min-width: 1200px) {
