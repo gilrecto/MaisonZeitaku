@@ -50,8 +50,10 @@
         {% if extend_height %} card--extend-height{% endif %}
         {% if card_product.featured_media == nil and settings.card_style == 'card' %} ratio{% endif %}
         {% if horizontal_class %} card--horizontal{% endif %}
+        {% if card_product.media.size > 0 %} card--product{% endif %}
       "
       style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
+      data-product-id="{{ card_product.id }}"
     >
       <div
         class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or settings.card_style == 'standard' %} ratio{% endif %} ts:overflow-hidden ts:!border ts:!border-transparent ts:group-hover:!border-[rgba(var(--foreground))] ts:transition-all"
@@ -410,6 +412,26 @@
       </div>
       <div class="card__content">
         <div class="card__information">
+          {%- if request.page_type == 'collection' -%}
+            <div class="variant-count-wrapper ts:text-xs ts:leading-none ts:font-semibold ts:mb-3.5 ts:text-[#959490]">
+              {% liquid
+                assign color_option_index = -1
+                for option in card_product.options_with_values
+                  if option.name == 'Color' or option.name == 'Colour'
+                    assign color_option_index = forloop.index0
+                    assign color_count = option.values.size
+                    break
+                  endif
+                endfor
+              %}
+
+              {% if color_option_index >= 0 %}
+                <span class="color-variant-count">
+                  {{ 'products.product.color_variants_count' | t: count: color_count }}
+                </span>
+              {% endif %}
+            </div>
+          {%- endif -%}
           <h3
             class="card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
             {% if card_product.featured_media or settings.card_style == 'card' %}
@@ -627,3 +649,5 @@
     </div>
   </div>
 {%- endif -%}
+
+

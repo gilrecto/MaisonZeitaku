@@ -440,7 +440,7 @@
   {%- endif -%}
   {% comment %}  Drawer and mobile filter {% endcomment %}
   <menu-drawer
-    class="mobile-facets__wrapper{% if filter_type == 'horizontal' or filter_type == 'vertical' %} medium-hide large-up-hide{% endif %} ts:!mx-0 ts:!justify-end"
+    class="mobile-facets__wrapper{% if filter_type == 'horizontal' or filter_type == 'vertical' %} medium-hide large-up-hide{% endif %} ts:!mx-0 ts:!justify-end ts:row-start-1 ts:col-start-2"
     data-breakpoint="mobile"
   >
     <details class="mobile-facets__disclosure disclosure-has-popup">
@@ -457,14 +457,20 @@
             {%- elsif enable_sorting -%}
               {{ 'products.facets.sort_button' | t }}
             {%- endif -%}
+            {%- if results.all_products_count != results.products_count -%}
+              <count class="ts:text-[90%] ts:opacity-80">({{ results.products_count }})</count>
+            {%- endif -%}
           </span>
           <span class="mobile-facets__open-label button-label small-hide ts:!text-sm ts:uppercase ts:!ml-5">
             {%- if enable_filtering -%}
               {{ 'products.facets.filter_button' | t }}
             {%- endif -%}
+            {%- if results.all_products_count != results.products_count -%}
+              <count class="ts:text-[90%] ts:opacity-80">({{ results.products_count }})</count>
+            {%- endif -%}
           </span>
         </span>
-        <span tabindex="0" class="mobile-facets__close">
+        <span tabindex="0" class="mobile-facets__close ts:!w-6 ts:!h-6 ts:!top-4">
           <span class="svg-wrapper">
             {{- 'icon-close.svg' | inline_asset_content -}}
           </span>
@@ -473,23 +479,29 @@
       <facet-filters-form>
         <form id="FacetFiltersFormMobile" class="mobile-facets">
           <div class="mobile-facets__inner gradient">
-            <div class="mobile-facets__header">
-              <div class="mobile-facets__header-inner">
-                <h2 class="mobile-facets__heading medium-hide large-up-hide">
+            <div class="mobile-facets__header ts:!border-[rgba(var(--color-foreground))]">
+              <div class="mobile-facets__header-inner ts:text-start">
+                <h2 class="mobile-facets__heading medium-hide large-up-hide ts:!text-xs ts:uppercase">
                   {%- if enable_filtering and enable_sorting -%}
                     {{ 'products.facets.filter_and_sort' | t }}
                   {%- elsif enable_filtering -%}
                     {{ 'products.facets.filter_button' | t }}
                   {%- elsif enable_sorting -%}
                     {{ 'products.facets.sort_button' | t }}
+                  {%- elsif filter_type == 'drawer' and enable_sorting == false -%}
+                    {{ 'products.facets.filter_and_sort' | t }}
                   {%- endif -%}
                 </h2>
-                <h2 class="mobile-facets__heading small-hide">
+                <h2 class="mobile-facets__heading small-hide ts:!text-xs ts:uppercase">
                   {%- if enable_filtering -%}
-                    {{ 'products.facets.filter_button' | t }}
+                    {%- if filter_type == 'drawer' and enable_sorting == false -%}
+                      {{ 'products.facets.filter_and_sort' | t }}
+                    {%- else -%}
+                      {{ 'products.facets.filter_button' | t }}
+                    {%- endif -%}
                   {%- endif -%}
                 </h2>
-                <p class="mobile-facets__count">
+                <p class="mobile-facets__count ts:!hidden">
                   {%- if results.results_count -%}
                     {{ 'templates.search.results_with_count' | t: terms: results.terms, count: results.results_count }}
                   {%- elsif results.products_count == results.all_products_count -%}
@@ -505,8 +517,37 @@
             </div>
             <div
               id="FacetsWrapperMobile"
-              class="mobile-facets__main has-submenu gradient"
+              class="mobile-facets__main has-submenu gradient ts:text-xs"
             >
+              {%- if filter_type == 'drawer' and enable_sorting == false -%}
+                <div class="facet-filters sorting caption ts:!px-8 ts:pb-6 ts:mb-8 ts:border-b ts:border-b-gray-200">
+                  <div class="facet-filters__field ts:flex-wrap ts:!justify-start">
+                    <h2 class="facet-filters__label ts:w-full ts:!text-xs ts:leading-none ts:!m-0 ts:uppercase ts:pb-4 ts:border-b ts:border-b-gray-100 ts:!mb-5">
+                      <span>{{ 'products.facets.sort_by_label' | t }}</span>
+                    </h2>
+                    <div class="sort-by-radios ts:w-full">
+                      {%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
+                      {%- for option in results.sort_options -%}
+                        <div class="sort-radio-wrapper ts:!text-xs ts:relative ts:flex ts:items-center ts:gap-3">
+                          <input 
+                            type="radio" 
+                            id="SortBy-{{ option.value | escape }}" 
+                            name="sort_by" 
+                            value="{{ option.value | escape }}"
+                            {% if option.value == sort_by %}checked="checked"{% endif %}
+                            class="sort-by-radio ts:appearance-none ts:hidden ts:peer"
+                            aria-describedby="a11y-refresh-page-message"
+                          >
+                          <span class="sort-radio-dot ts:block ts:w-4 ts:h-4 ts:rounded-full ts:border ts:bg-transparent ts:cursor-pointer ts:peer-checked:bg-[rgba(var(--color-foreground))] ts:transition-all"></span>
+                          <label for="SortBy-{{ option.value | escape }}" class="ts:cursor-pointer">
+                            {{ option.name | escape }}
+                          </label>
+                        </div>
+                      {%- endfor -%}
+                    </div>
+                  </div>
+                </div>
+              {%- endif -%}
               {%- if enable_filtering -%}
                 {%- for filter in results.filters -%}
                   {% liquid
@@ -754,7 +795,7 @@
 
               <div class="mobile-facets__footer">
                 <facet-remove class="mobile-facets__clear-wrapper">
-                  <a href="{{ results_url }}" class="mobile-facets__clear underlined-link">
+                  <a href="{{ results_url }}" class="mobile-facets__clear underlined-link ts:text-xs ts:leading-none">
                     {{- 'products.facets.clear_all' | t -}}
                   </a>
                 </facet-remove>
@@ -782,7 +823,7 @@
     </details>
   </menu-drawer>
 
-  <div class="active-facets active-facets-mobile medium-hide large-up-hide">
+  <div class="active-facets active-facets-mobile medium-hide large-up-hide ts:row-start-2">
     {%- for filter in results.filters -%}
       {%- for value in filter.active_values -%}
         <facet-remove>
@@ -869,7 +910,7 @@
     </facet-filters-form>
   {%- endif -%}
   <div
-    class="product-count light{% if filter_type == 'vertical' or filter_type == 'horizontal' %} medium-hide large-up-hide{% endif %} ts:!m-0"
+    class="product-count light{% if filter_type == 'vertical' or filter_type == 'horizontal' %} medium-hide large-up-hide{% endif %} ts:!m-0 ts:row-start-1 ts:col-start-1 ts:!text-start"
     role="status"
   >
     <h2 class="product-count__text text-body">

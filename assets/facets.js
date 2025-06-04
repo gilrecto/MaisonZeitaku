@@ -45,7 +45,14 @@ class FacetFiltersForm extends HTMLElement {
     if (countContainerDesktop) {
       countContainerDesktop.classList.add('loading');
     }
-
+    
+    // Reset infinite scroll if it exists
+    const infiniteScroll = document.querySelector('infinite-scroll');
+    if (infiniteScroll) {
+      // Mark that we're doing a filter/sort change
+      infiniteScroll.dataset.filterChanging = 'true';
+    }
+    
     sections.forEach((section) => {
       const url = `${window.location.pathname}?section_id=${section.section}&${searchParams}`;
       const filterDataUrl = (element) => element.url === url;
@@ -80,9 +87,29 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderProductGridContainer(html) {
-    document.getElementById('ProductGridContainer').innerHTML = new DOMParser()
+    const productGridContainer = document.getElementById('ProductGridContainer');
+    const newProductGridContainer = new DOMParser()
       .parseFromString(html, 'text/html')
-      .getElementById('ProductGridContainer').innerHTML;
+      .getElementById('ProductGridContainer');
+    
+    if (productGridContainer && newProductGridContainer) {
+      // Replace the entire product grid container content
+      productGridContainer.innerHTML = newProductGridContainer.innerHTML;
+      
+      // Find the infinite scroll component and update its data attributes
+      const infiniteScroll = productGridContainer.querySelector('infinite-scroll');
+      if (infiniteScroll) {
+        const newInfiniteScroll = newProductGridContainer.querySelector('infinite-scroll');
+        if (newInfiniteScroll) {
+          // Update data attributes
+          infiniteScroll.dataset.totalPages = newInfiniteScroll.dataset.totalPages;
+          infiniteScroll.dataset.paginationUrl = newInfiniteScroll.dataset.paginationUrl;
+        }
+      }
+      
+      // Dispatch an event to notify that the collection has been reloaded
+      document.dispatchEvent(new CustomEvent('collection:reloaded'));
+    }
 
     document
       .getElementById('ProductGridContainer')
@@ -363,3 +390,5 @@ class FacetRemove extends HTMLElement {
 }
 
 customElements.define('facet-remove', FacetRemove);
+
+

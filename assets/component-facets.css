@@ -954,13 +954,15 @@ details.menu-opening .mobile-facets__close .svg-wrapper {
 }
 
 .mobile-facets__summary {
-  padding: 1.3rem 2.5rem;
+  padding: 1rem 2rem;
 }
 
 .mobile-facets__summary .svg-wrapper {
   margin-left: auto;
 }
-
+.mobile-facets__arrow .icon-arrow {
+  width: 1.15rem;
+}
 .mobile-facets__summary > div {
   display: flex;
   align-items: center;

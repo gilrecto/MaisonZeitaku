@@ -15,6 +15,10 @@
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
+{%- if section.settings.enable_infinite_scroll -%}
+  <script src="{{ 'infinite-scroll.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
 {%- if section.settings.quick_add == 'bulk' -%}
   <script src="{{ 'quick-add-bulk.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
@@ -139,13 +143,18 @@
             </div>
           </div>
         {%- else -%}
-          <div
-            class="collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+          <infinite-scroll 
+            class="collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %} ts:block"
+            data-pagination-url="{{ collection.url }}"
+            data-total-pages="{{ paginate.pages }}"
+            data-products-per-page="{{ section.settings.products_per_page }}"
+            {% if section.settings.enable_infinite_scroll %}data-infinite-scroll="true"{% endif %}
           >
             <div class="loading-overlay gradient"></div>
             <ul
               id="product-grid"
               data-id="{{ section.id }}"
+              data-product-count="{{ collection.products_count }}"
               class="
                 grid product-grid grid--{{ section.settings.columns_mobile }}-col-tablet-down
                 grid--{{ section.settings.columns_desktop }}-col-desktop
@@ -164,6 +173,7 @@
                     data-cascade
                     style="--animation-order: {{ forloop.index }};"
                   {% endif %}
+                  data-product-id="{{ product.id }}"
                 >
                   {% render 'card-product',
                     card_product: product,
@@ -183,9 +193,13 @@
             </ul>
 
             {%- if paginate.pages > 1 -%}
-              {% render 'pagination', paginate: paginate, anchor: '' %}
+              {% if section.settings.enable_infinite_scroll %}
+                <div id="infinite-scroll-sentinel" class="infinite-scroll-sentinel ts:h-[1px] ts:w-full ts:!block"></div>
+              {% else %}
+                {% render 'pagination', paginate: paginate, anchor: '' %}
+              {% endif %}
             {%- endif -%}
-          </div>
+          </infinite-scroll>
         {%- endif -%}
       </div>
     </div>
@@ -194,6 +208,59 @@
     {{ 'mask-arch.svg' | inline_asset_content }}
   {%- endif -%}
 </div>
+
+<script>
+  // Helper function to reinitialize infinite scroll after filter/sort changes
+  document.addEventListener('DOMContentLoaded', function() {
+    // Listen for the collection rendering event
+    document.addEventListener('collection:reloaded', function(event) {
+      console.log('Collection reloaded event detected');
+      
+      // Find the infinite scroll component
+      const infiniteScroll = document.querySelector('infinite-scroll');
+      if (infiniteScroll) {
+        console.log('Infinite scroll component found, reinitializing');
+        
+        // Force a complete reset of the component
+        infiniteScroll.resetAfterFilterChange();
+        
+        // Make sure the sentinel is visible and being observed
+        const sentinel = document.getElementById('infinite-scroll-sentinel');
+        if (sentinel && infiniteScroll.intersectionObserver) {
+          infiniteScroll.intersectionObserver.observe(sentinel);
+        }
+      }
+    });
+    
+    // Add event listeners to all filter and sort forms
+    document.querySelectorAll('form[action*="/filter"], form[action*="/sort_by"]').forEach(form => {
+      form.addEventListener('submit', function() {
+        // Mark that we're changing filters
+        const infiniteScroll = document.querySelector('infinite-scroll');
+        if (infiniteScroll) {
+          infiniteScroll.dataset.filterChanging = 'true';
+          // Store current URL for comparison after reload
+          localStorage.setItem('previousUrl', window.location.href);
+        }
+      });
+    });
+    
+    // Check if we just came from a different URL (filter/sort change)
+    const previousUrl = localStorage.getItem('previousUrl');
+    if (previousUrl && previousUrl !== window.location.href) {
+      console.log('Page loaded after filter/sort change');
+      localStorage.removeItem('previousUrl');
+      
+      // Force a reset of the infinite scroll component
+      const infiniteScroll = document.querySelector('infinite-scroll');
+      if (infiniteScroll) {
+        setTimeout(() => {
+          infiniteScroll.resetAfterFilterChange();
+        }, 100);
+      }
+    }
+  });
+</script>
 
 {% schema %}
 {
@@ -208,6 +275,13 @@
       "step": 4,
       "default": 16,
       "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_infinite_scroll",
+      "default": false,
+      "label": "Enable infinite scroll",
+      "info": "Load more products automatically as the customer scrolls down"
     },
     {
       "type": "range",
@@ -408,3 +482,6 @@
   ]
 }
 {% endschema %}
+
+
+
