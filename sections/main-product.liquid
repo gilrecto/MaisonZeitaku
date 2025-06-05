@@ -73,15 +73,15 @@
   {%- endif -%}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
-  <div class="page-width">
+  <div class="page-width ts:md:!px-0">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="grid__item product__media-wrapper">
         {% render 'product-media-gallery', variant_images: variant_images %}
       </div>
-      <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} ts:!py-14 ts:!px-20">
         <section
           id="ProductInfo-{{ section.id }}"
-          class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
+          class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %} ts:!max-w-[50rem] ts:mx-auto ts:!top-40"
         >
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
@@ -97,13 +97,21 @@
                   {{- block.settings.text -}}
                 </p>
               {%- when 'title' -%}
-                <div class="product__title" {{ block.shopify_attributes }}>
-                  <h1>{{ product.title | escape }}</h1>
+                <div class="product__title{%  if block.settings.inline_price %} ts:flex ts:items-center ts:justify-between{% endif %} ts:!mb-8" {{ block.shopify_attributes }}>
+                  <h1 class="{{ block.settings.heading_size }} ts:uppercase">{{ product.title | escape }}</h1>
                   <a href="{{ product.url }}" class="product__title">
-                    <h2 class="h1">
+                    <h2 class="h1 {{ block.settings.heading_size }} ts:uppercase">
                       {{ product.title | escape }}
                     </h2>
                   </a>
+                  {%- if block.settings.inline_price -%}
+                    {%- render 'price',
+                      product: product,
+                      use_variant: true,
+                      show_badges: true,
+                      price_class: 'price--small ts:!text-sm ts:lowercase'
+                    -%}
+                  {%- endif -%}
                 </div>
               {%- when 'price' -%}
                 <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
@@ -133,7 +141,7 @@
                     {%- endif -%}
                   </div>
                 {%- endif -%}
-                <div {{ block.shopify_attributes }}>
+                <div class="ts:sr-only" {{ block.shopify_attributes }}>
                   {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
                   {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
                     <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
@@ -193,7 +201,7 @@
                 </p>
               {%- when 'description' -%}
                 {%- if product.description != blank -%}
-                  <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
+                  <div class="product__description rte quick-add-hidden ts:!text-sm" {{ block.shopify_attributes }}>
                     {{ product.description }}
                   </div>
                 {%- endif -%}
@@ -768,7 +776,52 @@
     {
       "type": "title",
       "name": "t:sections.main-product.blocks.title.name",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Heading Size",
+          "options": [
+            {
+              "value": "ts:!text-3xl",
+              "label": "3X Large"
+            },
+            {
+              "value": "ts:!text-2xl",
+              "label": "2X Large"
+            },
+            {
+              "value": "ts:!text-xl",
+              "label": "Extra Large"
+            },
+            {
+              "value": "ts:!text-lg",
+              "label": "Large"
+            },
+            {
+              "value": "ts:!text-base",
+              "label": "Medium"
+            },
+            {
+              "value": "ts:!text-sm",
+              "label": "Small"
+            },
+            {
+              "value": "ts:!text-xs",
+              "label": "Extra Small"
+            }
+          ],
+          "default": "ts:!text-2xl"
+        },
+        {
+          "type": "checkbox",
+          "id": "inline_price",
+          "label": "Show Product Price",
+          "default": false,
+          "info": "This will show the price inline with the product title."
+        }
+      ]
     },
     {
       "type": "price",

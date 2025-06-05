@@ -28,8 +28,8 @@
         endif
       -%}
       {%- if picker_type == 'swatch' -%}
-        <fieldset class="js product-form__input product-form__input--swatch">
-          <legend class="form__label">
+        <fieldset class="js product-form__input product-form__input--swatch ts:space-x-4">
+          <legend class="form__label ts:sr-only">
             {{ option.name }}:
             <span data-selected-value>
               {{- option.selected_value -}}
@@ -41,10 +41,13 @@
             block: block,
             picker_type: picker_type
           %}
+          <span class="ts:!text-xs ts:uppercase ts:mt-2 ts:basis-full ts:w-full" data-selected-value>
+            {{- option.selected_value -}}
+          </span>
         </fieldset>
       {%- elsif picker_type == 'button' -%}
-        <fieldset class="js product-form__input product-form__input--pill">
-          <legend class="form__label">{{ option.name }}</legend>
+        <fieldset class="js product-form__input product-form__input--pill ts:grid ts:lg:grid-cols-7 ts:md:grid-cols-5 ts:grid-cols-4 ts:!max-w-full">
+          <legend class="form__label ts:sr-only">{{ option.name }}</legend>
           {% render 'product-variant-options',
             product: product,
             option: option,

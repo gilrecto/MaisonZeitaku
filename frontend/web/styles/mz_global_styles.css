@@ -31,7 +31,7 @@ body.page--index .section-header .header__icon {
 	@apply ts:!py-[0.8rem] ts:!px-5;
 }
 .header__menu-item {
-	@apply ts:px-6 ts:uppercase;
+	@apply ts:2xl:px-6 ts:px-5 ts:uppercase;
 }
 .header__menu-item.menu-item--sale {
 	@apply ts:!text-[#DA0000];
@@ -41,6 +41,9 @@ body.page--index .section-header .header__icon {
 }
 .header__icon .icon {
 	@apply ts:w-12 ts:h-12;
+}
+.header__icon .icon.icon-heart-empty {
+	@apply ts:w-9 ts:h-9;
 }
 body.page--index .section-header {
 	@apply ts:xl:fixed ts:xl:w-full ts:xl:top-[3.6rem];
@@ -121,7 +124,7 @@ swiper-slider .swiper-scrollbar-drag {
 	@apply ts:!text-sm ts:!font-normal;
 }
 .card__content .price {
-	@apply ts:!text-xs ts:font-semibold;
+	@apply ts:!text-xs ts:font-semibold ts:lowercase;
 }
 .featured-collection .card__heading {
 	@apply ts:font-semibold ts:uppercase;

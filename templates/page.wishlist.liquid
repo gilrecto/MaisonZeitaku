@@ -1,0 +1,175 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+
+<div class="page-width">
+  <h1 class="main-page-title page-title h0">{{ page.title }}</h1>
+  
+  <div class="wishlist-container">
+    <div id="wishlist-items" class="grid product-grid grid--2-col-tablet-down grid--4-col-desktop">
+      <p id="wishlist-empty" class="wishlist-empty">{{ 'products.wishlist.empty_wishlist' | t }}</p>
+      <!-- Wishlist items will be loaded here via JS -->
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Wishlist page loaded');
+      const wishlistContainer = document.getElementById('wishlist-items');
+      const emptyMessage = document.getElementById('wishlist-empty');
+      const wishlistData = localStorage.getItem('shopify_wishlist');
+      const wishlist = wishlistData ? JSON.parse(wishlistData) : [];
+      
+      console.log('Wishlist data:', wishlist);
+      
+      if (wishlist.length === 0) {
+        emptyMessage.style.display = 'block';
+        return;
+      }
+      
+      emptyMessage.style.display = 'none';
+      
+      // Fetch product data for each item in the wishlist
+      const productIds = wishlist.map(item => item.productId).join(',');
+      console.log('Fetching products with IDs:', productIds);
+      
+      fetch(`/products.json?limit=250&ids=${productIds}`)
+        .then(response => {
+          console.log('Response status:', response.status);
+          return response.json();
+        })
+        .then(data => {
+          console.log('Products data:', data);
+          const products = data.products || [];
+          
+          if (products.length === 0) {
+            console.log('No products found');
+            emptyMessage.textContent = 'No products found in your wishlist.';
+            emptyMessage.style.display = 'block';
+            return;
+          }
+          
+          wishlist.forEach(item => {
+            console.log('Looking for product:', item.productId);
+            const product = products.find(p => p.id.toString() === item.productId.toString());
+            
+            if (product) {
+              console.log('Found product:', product.title);
+              const variant = product.variants.find(v => v.id.toString() === item.variantId.toString()) || product.variants[0];
+              const productUrl = `/products/${product.handle}`;
+              const imageUrl = variant.featured_image?.src || product.featured_image || product.images[0]?.src;
+              const formattedPrice = formatMoney(variant.price);
+              
+              const productCard = document.createElement('div');
+              productCard.className = 'grid__item';
+              productCard.dataset.productId = product.id;
+              
+              productCard.innerHTML = `
+                <div class="card-wrapper product-card-wrapper underline-links-hover">
+                  <div class="card card--standard card--media">
+                    <div class="card__inner">
+                      <div class="card__media ts:aspect-square ts:!relative">
+                        <div class="media media--transparent media--hover-effect">
+                          <a href="${productUrl}" class="media__container">
+                            <img
+                              src="${imageUrl || ''}"
+                              alt="${product.title}"
+                              class="motion-reduce"
+                              loading="lazy"
+                              width="533"
+                              height="600"
+                            >
+                          </a>
+                        </div>
+                      </div>
+                      <div class="card__content ts:!h-auto">
+                        <div class="card__information ts:!block">
+                          <h3 class="card__heading">
+                            <a href="${productUrl}" class="full-unstyled-link">
+                              ${product.title}
+                            </a>
+                          </h3>
+                          <div class="card-information">
+                            <div class="price">
+                              <div class="price__regular">
+                                <span class="price-item price-item--regular">
+                                  ${formattedPrice}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card__actions">
+                      <a href="${productUrl}" class="button button--primary">
+                        {{ 'products.product.view_full_details' | t }}
+                      </a>
+                      <button 
+                        type="button" 
+                        class="button button--secondary remove-wishlist-item"
+                        data-product-id="${product.id}"
+                      >
+                        {{ 'products.wishlist.remove_from_wishlist' | t }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              `;
+              
+              wishlistContainer.appendChild(productCard);
+            } else {
+              console.log('Product not found:', item.productId);
+            }
+          });
+          
+          // Add event listeners to remove buttons
+          document.querySelectorAll('.remove-wishlist-item').forEach(button => {
+            button.addEventListener('click', function() {
+              const productId = this.dataset.productId;
+              console.log('Removing product from wishlist:', productId);
+              let wishlist = JSON.parse(localStorage.getItem('shopify_wishlist') || '[]');
+              
+              wishlist = wishlist.filter(item => item.productId.toString() !== productId.toString());
+              localStorage.setItem('shopify_wishlist', JSON.stringify(wishlist));
+              
+              // Remove the product card
+              const productCard = this.closest('.grid__item');
+              productCard.remove();
+              
+              // Show empty message if no items left
+              if (wishlist.length === 0) {
+                emptyMessage.style.display = 'block';
+              }
+              
+              // Update wishlist count
+              document.dispatchEvent(new CustomEvent('wishlist:updated', {
+                detail: { wishlist: wishlist }
+              }));
+            });
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching wishlist products:', error);
+          emptyMessage.textContent = 'Error loading wishlist items.';
+          emptyMessage.style.display = 'block';
+        });
+    });
+    
+    // Helper function to format money - fixed to handle JSON properly
+    function formatMoney(cents) {
+      try {
+        // Get the money format from Shopify
+        const formatString = {{ shop.money_format | json }};
+        // Convert cents to dollars
+        const value = (cents / 100).toFixed(2);
+        // Replace the amount placeholder with the actual value
+        return formatString.replace(/\{\{\s*amount\s*\}\}/, value);
+      } catch (error) {
+        console.error('Error formatting money:', error);
+        return '$' + (cents / 100).toFixed(2);
+      }
+    }
+  </script>
+</div>
+

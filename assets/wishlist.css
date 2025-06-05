@@ -1,0 +1,111 @@
+/* Wishlist Button Styles */
+.product-form__button-container {
+  display: flex;
+  width: 100%;
+}
+
+.product-form__submit {
+  flex: 1;
+}
+
+.wishlist-button {
+  min-width: 6rem;
+  min-height: 6rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wishlist-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wishlist-icon .svg-wrapper {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Wishlist Notification */
+.wishlist-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transform: translateY(100px);
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+  z-index: 1000;
+}
+
+.wishlist-notification.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Wishlist Count Badge */
+.wishlist-count-bubble {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  height: 18px;
+  min-width: 18px;
+  padding: 0 4px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 700;
+  background-color: var(--color-button);
+  color: var(--color-button-text);
+  line-height: 1;
+}
+
+/* Wishlist Page Styles */
+.wishlist-container {
+  margin-top: 2rem;
+}
+
+.wishlist-empty {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: var(--color-foreground-subdued);
+}
+
+.card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.card__actions .button {
+  width: 100%;
+}
+
+@media screen and (min-width: 750px) {
+  .card__actions {
+    flex-direction: row;
+  }
+  
+  .card__actions .button {
+    flex: 1;
+  }
+}
+

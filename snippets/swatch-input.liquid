@@ -24,29 +24,30 @@
       checked: checked
     %}
 {% endcomment %}
-
-<input
-  type="{{ type | default: 'radio' }}"
-  id="{{ id }}"
-  name="{{ name }}"
-  value="{{ value }}"
-  form="{{ product_form_id }}"
-  class="swatch-input__input{% if visually_disabled %} visually-disabled{% endif %}"
-  {% if checked %}
-    checked
-  {% endif %}
-  {% if disabled %}
-    disabled
-  {% endif %}
-  {% if additional_props %}
-    {{ additional_props }}
-  {% endif %}
->
-<label
-  for="{{ id }}"
-  title="{{ value }}"
-  class="swatch-input__label{% if shape == 'square' %} swatch-input__label--square{% endif %}"
->
-  {% render 'swatch', swatch: swatch, shape: shape %}
-  {{ help_text }}
-</label>
+<div class="swatch-input-wrapper ts:leading-none">
+  <input
+    type="{{ type | default: 'radio' }}"
+    id="{{ id }}"
+    name="{{ name }}"
+    value="{{ value }}"
+    form="{{ product_form_id }}"
+    class="swatch-input__input{% if visually_disabled %} visually-disabled{% endif %} ts:peer"
+    {% if checked %}
+      checked
+    {% endif %}
+    {% if disabled %}
+      disabled
+    {% endif %}
+    {% if additional_props %}
+      {{ additional_props }}
+    {% endif %}
+  >
+  <label
+    for="{{ id }}"
+    title="{{ value }}"
+    class="swatch-input__label{% if shape == 'square' %} swatch-input__label--square{% endif %} ts:!outline-none ts:border-b ts:border-b-transparent ts:pb-2 ts:peer-checked:border-b-gray ts:!m-0"
+  >
+    {% render 'swatch', swatch: swatch, shape: shape %}
+    {{ help_text }}
+  </label>
+</div>

@@ -1169,9 +1169,32 @@ class ProductRecommendations extends HTMLElement {
           this.classList.add('product-recommendations--loaded');
         }
       })
+      .finally(() => { 
+        setTimeout(() => {
+          const swiperSlider = this.querySelector('swiper-slider');
+          if (swiperSlider) {
+            this.initSwiper(swiperSlider);
+          }
+        }, 0);
+
+        const toggleButton = this.querySelector('[data-related-products-toggle]');
+        const relatedProducts = this.querySelector('[data-more-products]');
+
+        toggleButton?.addEventListener('click', () => {
+          toggleButton.classList.toggle('ts-is-active');
+          relatedProducts.classList.toggle('ts-is-active');
+        });
+      })
       .catch((e) => {
         console.error(e);
       });
+  }
+  
+  initSwiper(swiperElement) {
+    if (swiperElement) {
+      const config = JSON.parse(swiperElement.getAttribute('config') || '{}');
+      swiperElement.config = config;
+    }
   }
 }
 

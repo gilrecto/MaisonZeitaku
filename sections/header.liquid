@@ -292,6 +292,19 @@
         {%- endcase -%}
       {%- endfor -%}
 
+      {%- if section.settings.enable_wishlist -%}
+        <a href="/pages/wishlist" class="header__icon header__icon--wishlist link focus-inset ts:max-xl:!hidden">
+          <span class="svg-wrapper">
+            {{ 'icon-heart-empty.svg' | inline_asset_content }}
+          </span>
+          <span class="visually-hidden">{{ 'products.wishlist.view_wishlist' | t }}</span>
+          <div class="wishlist-count-bubble hidden">
+            <span aria-hidden="true" class="wishlist-count">0</span>
+            <span class="visually-hidden">{{ 'products.wishlist.items_in_wishlist' | t: count: 0 }}</span>
+          </div>
+        </a>
+      {%- endif -%}
+
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset ts:max-xl:!mr-0" id="cart-icon-bubble">
         {% if cart == empty %}
           <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
@@ -618,6 +631,12 @@
       "info": "t:sections.header.settings.enable_customer_avatar.info"
     },
     {
+      "type": "checkbox",
+      "id": "enable_wishlist",
+      "default": false,
+      "label": "Enable Wishlist"
+    },
+    {
       "type": "header",
       "content": "t:sections.all.spacing"
     },
@@ -663,3 +682,5 @@
   ]
 }
 {% endschema %}
+
+

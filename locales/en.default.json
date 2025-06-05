@@ -216,6 +216,15 @@
       "sort_by_label": "Sort by:",
       "to": "To",
       "clear_filter": "Remove filter"
+    },
+    "wishlist": {
+      "add_to_wishlist": "Add to wishlist",
+      "remove_from_wishlist": "Remove from wishlist",
+      "added": "Added to wishlist",
+      "removed": "Removed from wishlist",
+      "view_wishlist": "View wishlist",
+      "empty_wishlist": "Your wishlist is empty",
+      "items_in_wishlist": "{{ count }} items in wishlist"
     }
   },
   "templates": {
