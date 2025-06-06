@@ -18,6 +18,7 @@
   --text-xl: clamp(2.8rem, 2vw, 3.5rem);
   --text-2xl: clamp(3.2rem, 3vw, 5rem);
   --text-3xl: clamp(3.5rem, 4vw, 6.5rem);
+  --text-big: clamp(6.5rem, 10vw, 11.5rem);
 
 	--breakpoint-sm: 576px;
 	--breakpoint-md: 768px;

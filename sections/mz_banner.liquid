@@ -110,6 +110,43 @@
 						{%- endif -%}
 					{% when 'richtext' %}
 						<div class="rte ts:mt-6" {{ block.shopify_attributes }}>{{ block.settings.richtext_content }}</div>
+					{%  when 'image' %}
+						{%- if block.settings.image != blank -%}
+							{% liquid
+								assign image_width = block.settings.image.width
+								assign image_height = block.settings.image.height
+								assign image_class = 'motion-reduce ts:w-[var(--img-width)] ts:h-auto'
+								assign fetch_priority = 'auto'
+								assign justify_md = ' ts:md:justify-center'
+								assign justify_sm = ' ts:justify-center'
+								assign desktop_width = block.settings.image_width | append: 'rem'
+								assign mobile_width = block.settings.image_width_mobile |append: 'rem'
+
+								if section.index == 1
+									assign fetch_priority = 'high'
+								endif
+
+								if setting.text_alignment == 'left'
+									assign justify_md = ' ts:md:justify-start'
+								elsif setting.text_alignment == 'right'
+									assign justify_md = ' ts:md:justify-end'
+								endif
+								if setting.text_alignment_mobile == 'left'
+									assign justify_sm = ' ts:justify-start'
+								elsif setting.text_alignment_mobile == 'right'
+									assign justify_sm = ' ts:justify-end'
+								endif
+								assign justify = justify_md | append: justify_sm
+							%}
+
+							<div class="img-wrapper ts:lg:mb-20 ts:mb-12 ts:flex{{ justify }}" style="--img-width: clamp({{ mobile_width }}, {{ block.settings.image_width }}vw, {{ desktop_width }});" {{ block.shopify_attributes }}>
+								{{
+									block.settings.image
+									| image_url: width: 3840
+									| image_tag: height: image_height, class: image_class, fetchpriority: fetch_priority, width: image_width, height: image_height
+								}}
+							</div>
+						{%- endif -%}
 				{% endcase %}
 			{%- endfor -%}
 
@@ -443,6 +480,10 @@
 						"label": "Heading Size",
 						"options": [
 							{
+								"value": "ts:!text-big",
+								"label": "Big"
+							},
+							{
 								"value": "ts:!text-3xl",
 								"label": "3X Large"
 							},
@@ -545,6 +586,40 @@
 						"type": "url",
 						"id": "link",
 						"label": "Caption URL"
+					}
+				]
+			},
+			{
+				"type": "image",
+				"name": "Image",
+				"limit": 1,
+				"settings": [
+					{
+						"type": "image_picker",
+						"id": "image",
+						"label": "Image"
+					},
+					{
+						"type": "range",
+						"id": "image_width",
+						"min": 5,
+						"max": 100,
+						"step": 1,
+						"unit": "rem",
+						"label": "Width",
+						"default": 25,
+						"info": "Desktop width of the image. 1rem = 10px."
+					},
+					{
+						"type": "range",
+						"id": "image_width_mobile",
+						"min": 5,
+						"max": 100,
+						"step": 1,
+						"unit": "rem",
+						"label": "Mobile Width",
+						"default": 25,
+						"info": "Mobile width of the image. 1rem = 10px."
 					}
 				]
 			}

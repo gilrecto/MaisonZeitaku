@@ -136,6 +136,16 @@ swiper-slider .swiper-scrollbar-drag {
 	@apply ts:lowercase;
 }
 
+body.password .media-banner {
+	@apply ts:h-dvh;
+}
+body.password .media-banner .contents-wrapper h2 {
+	@apply ts:!font-normal ts:!leading-none;
+}
+body.password .media-banner .contents-wrapper .rte {
+	@apply ts:text-[clamp(1.8rem,3vw,3rem)] ts:leading-none;
+}
+
 
 @media only screen and (min-width: 1200px) {
 	.header.header--middle-left {
