@@ -263,10 +263,14 @@
     "contact": {
       "form": {
         "title": "Contact form",
-        "name": "Name",
+        "name": "Fullname",
+        "name_placeholder": "Enter your name",
         "email": "Email",
+        "email_placeholder": "Enter your email",
         "phone": "Phone number",
-        "comment": "Comment",
+        "phone_placeholder": "Enter your phone number",
+        "comment": "Message",
+        "comment_placeholder": "Write your message here",
         "send": "Send",
         "post_success": "Thanks for contacting us. We'll get back to you as soon as possible.",
         "error_heading": "Please adjust the following:"

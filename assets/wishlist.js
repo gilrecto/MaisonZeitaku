@@ -1,13 +1,7 @@
-// Add this at the beginning of the file
-console.log('Wishlist.js loaded');
-
 // Simpler implementation without custom elements
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('DOM loaded, initializing wishlist');
-  
   // Log all wishlist buttons found
   const wishlistButtons = document.querySelectorAll('.wishlist-button');
-  console.log('Found', wishlistButtons.length, 'wishlist buttons');
   
   // Initialize all wishlist buttons
   initWishlistButtons();
@@ -17,15 +11,12 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Listen for dynamically added buttons
   document.addEventListener('shopify:section:load', function() {
-    console.log('Section loaded, reinitializing wishlist buttons');
     initWishlistButtons();
   });
 });
 
 function initWishlistButtons() {
   document.querySelectorAll('.wishlist-button').forEach(button => {
-    console.log('Initializing button for product:', button.getAttribute('data-product-id'));
-    
     // Remove existing click listeners to prevent duplicates
     button.removeEventListener('click', handleWishlistButtonClick);
     
@@ -44,11 +35,8 @@ function handleWishlistButtonClick(event) {
   const variantId = button.getAttribute('data-variant-id');
   
   if (!productId) {
-    console.error('No product ID found on wishlist button');
     return;
   }
-  
-  console.log('Wishlist button clicked for product:', productId);
   
   // Get current wishlist
   let wishlist = getWishlist();

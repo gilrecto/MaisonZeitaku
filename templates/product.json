@@ -34,9 +34,52 @@
             "show_gift_card_recipient": false
           }
         },
+        "collapsible_tab_zHwQrQ": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "FREE DELIVERY & EASY RETURNS",
+            "subtext": "Estimated delivery Mar 20th-21st",
+            "icon": "none",
+            "content": "",
+            "page": ""
+          }
+        },
+        "collapsible_tab_HUy4F3": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "COMPLIMENTARY GIFTWRAPPING",
+            "subtext": "Available at checkout",
+            "icon": "none",
+            "content": "",
+            "page": ""
+          }
+        },
+        "collapsible_tab_JXeppg": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "PICK UP IN STORE",
+            "subtext": "Buy online, pick up today",
+            "icon": "none",
+            "content": "",
+            "page": ""
+          }
+        },
         "description": {
           "type": "description",
           "settings": {}
+        },
+        "additional_features_pLPPWP": {
+          "type": "additional_features",
+          "settings": {
+            "visible_count": 8
+          }
+        },
+        "popup_7WgdgW": {
+          "type": "popup",
+          "settings": {
+            "text": "Need Help?",
+            "page": "contact"
+          }
         }
       },
       "block_order": [
@@ -45,7 +88,12 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "description"
+        "collapsible_tab_zHwQrQ",
+        "collapsible_tab_HUy4F3",
+        "collapsible_tab_JXeppg",
+        "description",
+        "additional_features_pLPPWP",
+        "popup_7WgdgW"
       ],
       "settings": {
         "enable_sticky_info": true,
@@ -54,7 +102,7 @@
         "constrain_to_viewport": true,
         "media_fit": "cover",
         "gallery_layout": "stacked",
-        "mobile_thumbnails": "show",
+        "mobile_thumbnails": "hide",
         "media_position": "left",
         "image_zoom": "hover",
         "hide_variants": false,

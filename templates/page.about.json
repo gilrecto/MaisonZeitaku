@@ -1,0 +1,50 @@
+{
+  "sections": {
+    "image_with_text_DPnwFU": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_kqMNm4": {
+          "type": "heading",
+          "settings": {
+            "heading": "About Maison Zeitaku",
+            "heading_size": "ts:!text-lg"
+          }
+        },
+        "text_hcc6BC": {
+          "type": "text",
+          "settings": {
+            "text": "<p>At Maison Zeitaku, we redefine luxury by curating the most sought-after designer clothing and footwear from around the world. Based in Canada, we specialize in sourcing exclusive, high-end fashion pieces from prestigious brands, offering our clients access to rare and limited-edition styles.<br\/><br\/>Our passion for craftsmanship and timeless design drives us to deliver an exceptional shopping experience. Whether you're seeking iconic runway pieces, hard-to-find sneakers, or classic wardrobe staples, Maison Zeitaku ensures authenticity, quality, and exclusivity in every purchase.<br\/><br\/>More than just a marketplace, Maison Zeitaku is a destination for fashion enthusiasts who appreciate the art of luxury. With a keen eye for detail and a commitment to excellence, we bring together a collection that embodies sophistication and prestige.<br\/><br\/><strong>Explore our curated selection and elevate your style with Maison Zeitaku.<\/strong><\/p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_kqMNm4",
+        "text_hcc6BC"
+      ],
+      "custom_css": [
+        "@media only screen and (min-width: 1441px) {.image-with-text__content {padding-left: 8vw; padding-right: 5vw; }}"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/about_banner.jpg",
+        "height": "adapt",
+        "desktop_image_width": "large",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "full_width": true,
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "image_with_text_DPnwFU"
+  ]
+}

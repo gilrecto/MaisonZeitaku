@@ -145,6 +145,21 @@ body.password .media-banner .contents-wrapper h2 {
 body.password .media-banner .contents-wrapper .rte {
 	@apply ts:text-[clamp(1.8rem,3vw,3rem)] ts:leading-none;
 }
+.product-media-container.constrain-height .media {
+	@apply ts:[@media(width<=749px)]:aspect-[3/4] ts:[@media(width<=749px)]:!pt-0;
+}
+.contact .field_wrapper {
+	@apply ts:mb-8;
+}
+.contact .field_wrapper .field-label {
+	@apply ts:text-sm ts:mb-3;
+}
+.contact .field_wrapper .field-label span {
+	@apply ts:text-[#DA0000];
+}
+.contact .field_wrapper .field__input {
+	@apply ts:text-xs ts:!py-6 ts:!px-8 ts:border ts:border-gray ts:placeholder:opacity-100 ts:placeholder:text-gray;
+}
 
 
 @media only screen and (min-width: 1200px) {

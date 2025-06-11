@@ -46,6 +46,10 @@
     <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
 
+  {%- if section.settings.mobile_thumbnails == 'hide' -%}
+    <script src="{{ 'custom-scrollbar.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
+
   {% if section.settings.image_zoom == 'hover' %}
     <script id="EnableZoomOnHover-main" src="{{ 'magnify.js' | asset_url }}" defer="defer"></script>
   {% endif %}
@@ -73,12 +77,12 @@
   {%- endif -%}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
-  <div class="page-width ts:md:!px-0">
+  <div class="page-width ts:[@media(width>=750px)]:!px-0">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
-      <div class="grid__item product__media-wrapper">
+      <div class="grid__item product__media-wrapper ts:[@media(width<=749px)]:mb-4">
         {% render 'product-media-gallery', variant_images: variant_images %}
       </div>
-      <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} ts:!py-14 ts:!px-20">
+      <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} ts:xl:px-20 ts:lg:px-16 ts:[@media(width>=750px)]:!py-14 ts:[@media(width>=750px)]:!px-8">
         <section
           id="ProductInfo-{{ section.id }}"
           class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %} ts:!max-w-[50rem] ts:mx-auto ts:!top-40"
@@ -201,7 +205,7 @@
                 </p>
               {%- when 'description' -%}
                 {%- if product.description != blank -%}
-                  <div class="product__description rte quick-add-hidden ts:!text-sm" {{ block.shopify_attributes }}>
+                  <div class="product__description rte quick-add-hidden ts:!text-sm ts:leading-[1.715]" {{ block.shopify_attributes }}>
                     {{ product.description }}
                   </div>
                 {%- endif -%}
@@ -221,11 +225,16 @@
                 <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
                   <details id="Details-{{ block.id }}-{{ section.id }}">
                     <summary>
-                      <div class="summary__title">
+                      <div class="summary__title ts:flex-wrap">
                         {% render 'icon-accordion', icon: block.settings.icon %}
-                        <h2 class="h4 accordion__title inline-richtext">
+                        <h2 class="accordion__title inline-richtext ts:!text-xs ts:uppercase ts:w-full">
                           {{ block.settings.heading | default: block.settings.page.title | escape }}
                         </h2>
+                        {%- if block.settings.subtext != blank -%}
+                          <p class="ts:mt-2 ts:text-xs ts:text-gray-500 ts:w-full">
+                            {{ block.settings.subtext | escape }}
+                          </p>
+                        {%- endif -%}
                       </div>
                       {{- 'icon-caret.svg' | inline_asset_content -}}
                     </summary>
@@ -456,7 +465,7 @@
                 >
                   <button
                     id="ProductPopup-{{ block.id }}"
-                    class="product-popup-modal__button link"
+                    class="product-popup-modal__button ts:no-underline ts:text-sm ts:uppercase ts:font-semibold"
                     type="button"
                     aria-haspopup="dialog"
                   >
@@ -668,6 +677,16 @@
                 </product-recommendations>
               {%- when 'icon-with-text' -%}
                 {% render 'icon-with-text', block: block %}
+              {%- when 'additional_features' -%}
+                {%- if product.metafields.data.addition_features != blank -%}
+                  <script src="{{ 'product_features_toggle.js' | asset_url }}" defer="defer"></script>
+                  <div class="product__additional-features rte" {{ block.shopify_attributes }}>
+                    <product-features-toggle visible-count="{{ block.settings.visible_count }}">
+                      {{ product.metafields.data.addition_features | metafield_tag }}
+                      <button type="button" class="ts:text-xs ts:uppercase ts:font-semibold ts:text-gray ts:underline ts:mt-3 ts:cursor-pointer">SHOW MORE</button>
+                    </product-features-toggle>
+                  </div>
+                {%- endif -%}
             {%- endcase -%}
           {%- endfor -%}
           <a href="{{ product.url }}" class="link product__view-details animate-arrow">
@@ -1006,6 +1025,11 @@
           "id": "heading",
           "default": "t:sections.main-product.blocks.collapsible_tab.settings.heading.default",
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.heading.label"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+          "label": "Subtext"
         },
         {
           "type": "select",
@@ -2123,6 +2147,23 @@
           "default": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.default",
           "label": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.label",
           "info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
+        }
+      ]
+    },
+    {
+      "type": "additional_features",
+      "name": "Additional Features",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "range",
+          "id": "visible_count",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 5,
+          "label": "Visible Features",
+          "info": "Number of features to show before 'Show More' button."
         }
       ]
     }
