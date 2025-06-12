@@ -19,7 +19,7 @@
 	{% if section.index == 1 -%}
 		@media only screen and (min-width: 1200px) {
 			.page-main-banner {
-				height: calc(100dvh - 6vw);
+				height: calc(100dvh - 5.5vw);
 			}
 		}
 	{%- endif %}
@@ -150,11 +150,30 @@
 				{% endcase %}
 			{%- endfor -%}
 
-			<div class="btn-wrapper ts:inline-block ts:space-x-4 ts:w-full ts:mt-8 ts:align-middle ts:md:px-5">
+			{%- liquid
+				assign justify_md = 'ts:md:justify-center'
+				assign justify_sm = ' ts:justify-center'
+
+				if setting.text_alignment == 'left'
+					assign justify_md = 'ts:md:justify-start'
+				elsif setting.text_alignment == 'right'
+					assign justify_md = 'ts:md:justify-end'
+				endif
+
+				if setting.text_alignment_mobile == 'left'
+					assign justify_sm = ' ts:justify-start'
+				elsif setting.text_alignment_mobile == 'right'
+					assign justify_sm = ' ts:justify-end'
+				endif
+
+				assign justify = justify_md | append: justify_sm
+			-%}
+
+			<div class="btn-wrapper ts:flex ts:flex-wrap ts:items-center {{ justify }} ts:gap-4 ts:w-full ts:mt-8 ts:align-middle ts:md:px-5">
 				{%- for block in section.blocks -%}
 					{%- if block.type == 'buttons' -%}
 						{%- if block.settings.button_text != blank -%}
-							<a href="{{ block.settings.button_url | default: '#' }}" class="button button--primary" {{ block.shopify_attributes }}>
+							<a href="{{ block.settings.button_url | default: '#' }}" class="button {{ block.settings.btn_style }}" {{ block.shopify_attributes }}>
 								{{ block.settings.button_text }}
 							</a>
 						{%- endif -%}
@@ -568,6 +587,22 @@
 						"id": "button_text",
 						"label": "Button Text",
 						"default": "Button"
+					},
+					{
+						"type": "select",
+						"id": "btn_style",
+						"label": "Button Style",
+						"options": [
+							{
+								"value": "button--primary",
+								"label": "Primary"
+							},
+							{
+								"value": "button--secondary",
+								"label": "Secondary"
+							}
+						],
+						"default": "button--primary"
 					}
 				]
 			},

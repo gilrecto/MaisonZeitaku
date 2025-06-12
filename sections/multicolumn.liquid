@@ -8,6 +8,7 @@
 		{% if section.settings.full_width %}
 		  --page-width: 100%;
 		{% endif %}
+    --weight: {{ section.settings.weight }};
 	}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -39,7 +40,7 @@
   >
     {%- unless section.settings.title == blank -%}
       <div class="{% if section.settings.button_label != blank and show_mobile_slider %}title-wrapper-with-link{% endif %} text-align title-wrapper--self-padded-mobile title-wrapper--no-top-margin multicolumn__title ts:lg:mb-20 ts:mb-12">
-        <h2 class="title inline-richtext {{ section.settings.heading_size }}">
+        <h2 class="title inline-richtext {{ section.settings.heading_size }} ts:!font-[var(--weight)]">
           {{ section.settings.title }}
         </h2>
         {%- if section.settings.button_label != blank and show_mobile_slider -%}
@@ -51,7 +52,7 @@
     {%- endunless -%}
     <slider-component class="slider-mobile-gutter">
       <ul
-        class="multicolumn-list contains-content-container grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %} ts:max-md:!gap-y-10"
+        class="multicolumn-list contains-content-container grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider %} slider slider--tablet grid--peek{% else %} ts:max-md:!px-0{% endif %} ts:max-md:!gap-y-12"
         id="Slider-{{ section.id }}"
         role="list"
       >
@@ -87,7 +88,7 @@
                 {% if section.settings.image_ratio == 'adapt' or section.settings.image_ratio == 'circle' %}
                   {% assign spaced_image = true %}
                 {% endif %}
-                <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} multicolumn-card-spacing{% endif %}">
+                <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} multicolumn-card-spacing{% endif %} ts:!mx-0">
                   <div
                     class="media media--transparent media--{{ section.settings.image_ratio }}{% if section.settings.enable_anim %} scroll-trigger animate--zoom-out scroll-trigger--offscreen{% endif %}"
                     {% if section.settings.image_ratio == 'adapt' %}
@@ -125,16 +126,17 @@
                   </div>
                 </div>
               {%- endif -%}
-              <div class="multicolumn-card__info">
+              <div class="multicolumn-card__info ts:!p-0 ts:!pt-4">
                 {%- if block.settings.title != blank -%}
-                  <h3 class="inline-richtext ts:!text-sm ts:font-semibold">{{ block.settings.title }}</h3>
+                  <h3 class="inline-richtext ts:!text-base ts:font-semibold">{{ block.settings.title }}</h3>
                 {%- endif -%}
                 {%- if block.settings.text != blank -%}
-                  <div class="rte ts:!text-sm">{{ block.settings.text }}</div>
+                  <div class="rte ts:!text-[1.3rem] ts:leading-none ts:!text-[rgba(var(--color-foreground),0.75)]">
+                    {{ block.settings.text }}
+                  </div>
                 {%- endif -%}
                 {%- if block.settings.link_label != blank -%}
-                  <a
-                    class="button button--primary ts:!border"
+                  <a class="ts:!block btn-text-only ts:md:mt-12 ts:mt-8 ts:!text-[1rem] ts:!font-semibold ts:underline"
                     {% if block.settings.link == blank %}
                       role="link" aria-disabled="true"
                     {% else %}
@@ -247,6 +249,15 @@
         }
       ],
       "default": "ts:!text-2xl"
+    },
+    {
+      "type": "range",
+      "id": "weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 400,
+      "label": "Heading Font Weight"
     },
     {
       "type": "text_alignment",

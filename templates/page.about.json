@@ -29,9 +29,11 @@
       "settings": {
         "image": "shopify:\/\/shop_images\/about_banner.jpg",
         "height": "adapt",
+        "enable_anim": true,
         "desktop_image_width": "large",
         "layout": "text_first",
         "image_behavior": "none",
+        "container_width": 1920,
         "full_width": true,
         "content_layout": "no-overlap",
         "desktop_content_position": "middle",

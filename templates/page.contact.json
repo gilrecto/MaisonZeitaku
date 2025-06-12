@@ -42,10 +42,15 @@
         "text_hRY6Ng",
         "text_TF3P39"
       ],
+      "custom_css": [
+        "@media only screen and (min-width: 992px) {.image-with-text__content {padding: 5rem 11.563vw; }}",
+        "@media only screen and (max-width: 749px) {.image-with-text__grid {flex-direction: column-reverse; } .image-with-text__media {padding-bottom: 0 !important; aspect-ratio: 1; }}"
+      ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
         "image": "shopify:\/\/shop_images\/contact_img.jpg",
         "height": "adapt",
+        "enable_anim": true,
         "desktop_image_width": "medium",
         "layout": "text_first",
         "image_behavior": "none",

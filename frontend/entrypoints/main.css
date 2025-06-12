@@ -10,12 +10,13 @@
   --color-transparent: transparent;
   --color-gray: #D9D9D9;
   --color-gray1: #F4F3F3;
+  --color-gray2: #959490;
 
   --text-xs: 1.2rem;
   --text-sm: 1.4rem;
   --text-base: 1.5rem;
   --text-lg: 2.1rem;
-  --text-xl: clamp(2.8rem, 2vw, 3.5rem);
+  --text-xl: clamp(2.5rem, 2vw, 3rem);
   --text-2xl: clamp(3.2rem, 3vw, 5rem);
   --text-3xl: clamp(3.5rem, 4vw, 6.5rem);
   --text-big: clamp(6.5rem, 10vw, 11.5rem);

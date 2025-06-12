@@ -1,6 +1,9 @@
 {{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  #shopify-section-{{ section.id }} {
+		--container-width: {{ section.settings.container_width | append: 'px' }};
+	}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -17,16 +20,16 @@
 <div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
   <div class="rich-text content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} rich-text--full-width content-container--full-width{% endif %} section-{{ section.id }}-padding">
     <div class="rich-text__wrapper rich-text__wrapper--{{ section.settings.desktop_content_position }}{% if section.settings.full_width %} page-width{% endif %}">
-      <div class="rich-text__blocks {{ section.settings.content_alignment }}">
+      <div class="rich-text__blocks {{ section.settings.content_alignment }} ts:!max-w-[var(--container-width)]">
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when 'heading' -%}
               <h2
-                class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} ts:!font-[var(--weight)]"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
-                  style="--animation-order: {{ forloop.index }};"
+                  style=" --weight: {{ block.settings.weight }}; --animation-order: {{ forloop.index }};"
                 {% endif %}
               >
                 {{ block.settings.heading }}
@@ -150,6 +153,16 @@
       "default": "scheme-1"
     },
     {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container Width",
+      "min": 1200,
+      "max": 2000,
+      "step": 10,
+      "unit": "px",
+      "default": 1920
+    },
+    {
       "type": "checkbox",
       "id": "full_width",
       "default": true,
@@ -195,31 +208,48 @@
         {
           "type": "select",
           "id": "heading_size",
+          "label": "Heading Size",
           "options": [
             {
-              "value": "h2",
-              "label": "t:sections.all.heading_size.options__1.label"
+              "value": "ts:!text-3xl",
+              "label": "3X Large"
             },
             {
-              "value": "h1",
-              "label": "t:sections.all.heading_size.options__2.label"
+              "value": "ts:!text-2xl",
+              "label": "2X Large"
             },
             {
-              "value": "h0",
-              "label": "t:sections.all.heading_size.options__3.label"
+              "value": "ts:!text-xl",
+              "label": "Extra Large"
             },
             {
-              "value": "hxl",
-              "label": "t:sections.all.heading_size.options__4.label"
+              "value": "ts:!text-lg",
+              "label": "Large"
             },
             {
-              "value": "hxxl",
-              "label": "t:sections.all.heading_size.options__5.label"
+              "value": "ts:!text-base",
+              "label": "Medium"
+            },
+            {
+              "value": "ts:!text-sm",
+              "label": "Small"
+            },
+            {
+              "value": "ts:!text-xs",
+              "label": "Extra Small"
             }
           ],
-          "default": "h1",
-          "label": "t:sections.all.heading_size.label"
-        }
+          "default": "ts:!text-2xl"
+        },
+        {
+          "type": "range",
+          "id": "weight",
+          "min": 100,
+          "max": 900,
+          "step": 100,
+          "default": 400,
+          "label": "Heading Font Weight"
+        },
       ]
     },
     {

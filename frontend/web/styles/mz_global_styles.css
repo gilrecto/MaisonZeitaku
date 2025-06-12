@@ -16,13 +16,11 @@
 .btn-text-only {
 	@apply ts:!text-sm ts:uppercase ts:font-normal ts:inline ts:p-0 ts:bg-transparent ts:text-[rgba(var(--color-foreground))] ts:hover:font-bold ts:hover:underline ts:transition-all ts:duration-300 ts:ease-linear;
 }
-body.page--index .section-header,
-body.page--index .section-header .header-wrapper,
-body.page--index .section-header .header__heading-logo,
-body.page--index .section-header .list-menu__item,
-body.page--index .section-header .header__active-menu-item,
-body.page--index .section-header .header__icon {
-	@apply ts:xl:!transition-all ts:xl:!delay-300 ts:xl:!ease-linear;
+.button--secondary {
+	@apply ts:after:!shadow-none ts:hover:!bg-[rgba(var(--color-foreground))] ts:hover:!text-[rgba(var(--color-background))];
+}
+button, a, .button, .btn {
+	@apply ts:transition-all ts:duration-300 ts:ease-linear;
 }
 .header {
 	@apply ts:transition-all ts:delay-300 ts:ease-in-out;
@@ -31,7 +29,7 @@ body.page--index .section-header .header__icon {
 	@apply ts:!py-[0.8rem] ts:!px-5;
 }
 .header__menu-item {
-	@apply ts:2xl:px-6 ts:px-5 ts:uppercase;
+	@apply ts:2xl:px-6 ts:px-5 ts:uppercase ts:font-bold;
 }
 .header__menu-item.menu-item--sale {
 	@apply ts:!text-[#DA0000];
@@ -45,25 +43,8 @@ body.page--index .section-header .header__icon {
 .header__icon .icon.icon-heart-empty {
 	@apply ts:w-9 ts:h-9;
 }
-body.page--index .section-header {
-	@apply ts:xl:fixed ts:xl:w-full ts:xl:top-[3.6rem];
-}
-body.page--index .section-header.scrolled-past-header {
-	@apply ts:xl:top-0;
-}
-body.page--index .section-header:not(.scrolled-past-header) .header-wrapper {
-	@apply ts:xl:bg-transparent;
-}
-body.page--index .section-header:not(.scrolled-past-header) .header__heading-logo {
-	@apply ts:xl:invert-100;
-}
-body.page--index .section-header:not(.scrolled-past-header) .list-menu__item,
-body.page--index .section-header:not(.scrolled-past-header) .header__active-menu-item,
-body.page--index .section-header:not(.scrolled-past-header) .header__icon {
-	@apply ts:xl:text-white;
-}
 .header__inline-menu .list-menu {
-	@apply ts:xl:w-full ts:xl:justify-end ts:xl:px-6;
+	@apply ts:xl:w-full;
 }
 .menu-drawer__menu-item {
 	@apply ts:!text-base ts:font-semibold ts:uppercase;
@@ -120,10 +101,10 @@ swiper-slider .swiper-scrollbar.swiper-scrollbar-horizontal {
 swiper-slider .swiper-scrollbar-drag {
 	@apply ts:block ts:bg-gray ts:h-[4px] ts:top-[-1px] ts:rounded-none;
 }
-.card__heading {
+.product-grid .card__heading {
 	@apply ts:!text-sm ts:!font-normal;
 }
-.card__content .price {
+.product-grid .card__content .price {
 	@apply ts:!text-xs ts:font-semibold ts:lowercase;
 }
 .featured-collection .card__heading {
@@ -135,7 +116,6 @@ swiper-slider .swiper-scrollbar-drag {
 .price .price-item .price .price-item {
 	@apply ts:lowercase;
 }
-
 body.password .media-banner {
 	@apply ts:h-dvh;
 }

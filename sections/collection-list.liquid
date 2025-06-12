@@ -5,6 +5,10 @@
 {%- style -%}
   #shopify-section-{{ section.id }} {
     --text-align: {{ section.settings.text_alignment | default: 'left' }};
+    --page-width: {{ section.settings.container_width | append: 'px' }};
+		{% if section.settings.full_width %}
+		  --page-width: 100%;
+		{% endif %}
   }
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -28,7 +32,7 @@
 -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="collection-list-wrapper page-width isolate{% if show_mobile_slider %} page-width-desktop{% endif %}{% if section.settings.title == blank %} no-heading{% endif %}{% if section.settings.show_view_all == false or section.blocks.size > collections.size %} no-mobile-link{% endif %} section-{{ section.id }}-padding">
+  <div class="collection-list-wrapper page-width isolate{% if show_mobile_slider %} page-width-desktop{% endif %}{% if section.settings.title == blank %} no-heading{% endif %}{% if section.settings.show_view_all == false or section.blocks.size > collections.size %} no-mobile-link{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} ts:md:!px-0{% endif %}">
     {%- unless section.settings.title == blank -%}
       <div class="{% if section.settings.show_view_all %}title-wrapper-with-link{% endif %} text-align{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% else %} title-wrapper--self-padded-mobile{% endif %} title-wrapper--no-top-margin ts:md:mb-20 ts:mb-16">
         <h2
@@ -80,7 +84,11 @@
               media_aspect_ratio: section.settings.image_ratio,
               custom_img: block.settings.image,
               columns: columns,
-              placeholder_image: placeholder_image
+              placeholder_image: placeholder_image,
+              btn: block.settings.btn_text,
+              btn_link: block.settings.btn_link,
+              btn_style: block.settings.btn_style,
+              title: block.settings.title
             %}
           </li>
         {%- endfor -%}
@@ -198,7 +206,23 @@
     {
       "type": "header",
       "content": "t:sections.collection-list.settings.header_layout.content"
-    },    
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container Width",
+      "min": 1200,
+      "max": 2000,
+      "step": 10,
+      "unit": "px",
+      "default": 1920
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": false,
+      "label": "Full width Section"
+    },
     {
       "type": "select",
       "id": "image_ratio",
@@ -299,6 +323,12 @@
       "name": "t:sections.collection-list.blocks.featured_collection.name",
       "settings": [
         {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "Title",
+          "info": "Custom collection title."
+        },
+        {
           "type": "collection",
           "id": "collection",
           "label": "t:sections.collection-list.blocks.featured_collection.settings.collection.label"
@@ -308,6 +338,36 @@
           "id": "image",
           "label": "Collection Image",
           "info": "Custom collection image."
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "select",
+          "id": "btn_style",
+          "label": "Button Style",
+          "options": [
+            {
+              "value": "button--primary",
+              "label": "Primary"
+            },
+            {
+              "value": "button--secondary",
+              "label": "Secondary"
+            }
+          ],
+          "default": "button--primary"
         }
       ]
     }
