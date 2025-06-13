@@ -37,7 +37,6 @@
       "custom_css": [
         "@media only screen and (max-width: 767px) {.media-banner {aspect-ratio: 3\/4 !important; }}"
       ],
-      "name": "Banner",
       "settings": {
         "color_scheme": "scheme-3",
         "banner_type": "image",
@@ -93,7 +92,6 @@
         ".grid {--grid-mobile-vertical-spacing: 2rem;}",
         "@media only screen and (min-width: 750px) {.grid {--grid-desktop-horizontal-spacing: 5rem; }}"
       ],
-      "name": "t:sections.collection-list.presets.name",
       "settings": {
         "title": "",
         "heading_size": "ts:!text-lg",
@@ -112,21 +110,19 @@
     },
     "mz_featured_collection_wpg6Mp": {
       "type": "mz_featured_collection",
-      "custom_css": [
-        ".card__content .price {display: none;}"
-      ],
-      "name": " Featured Collection",
+      "custom_css": [],
       "settings": {
         "color_scheme": "",
-        "title": "Explore Our Collections",
-        "title_size": "ts:!text-lg",
-        "collection": "frontpage",
-        "view_all": false,
+        "title": "Explore Our Category 1",
+        "title_size": "ts:!text-xl",
+        "weight": 400,
+        "collection": "new-arrivals",
+        "view_all": true,
+        "view_link_label": "Explore Now",
+        "view_all_style": "outline",
+        "text_alignment": "left",
         "prodoct_limit": 6,
-        "view_link_label": "View Collection",
-        "text_alignment": "center",
-        "view_all_style": "solid",
-        "container_width": 1540,
+        "container_width": 1920,
         "full_width": false,
         "box_color_scheme": "",
         "bordered": false,
@@ -136,28 +132,28 @@
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "d_slides": 3,
-        "l_slides": 3,
-        "t_slides": 3,
+        "d_slides": 4.4,
+        "l_slides": 3.5,
+        "t_slides": 2.5,
         "m_slides": 2,
-        "d_space": 165,
-        "l_space": 140,
-        "t_space": 75,
-        "m_space": 15,
-        "enable_loop": false,
-        "center_mode": true,
-        "mousewheel": false,
+        "d_space": 80,
+        "l_space": 65,
+        "t_space": 50,
+        "m_space": 10,
+        "enable_loop": true,
+        "center_mode": false,
+        "mousewheel": true,
         "enable_autoplay": false,
         "autoplay_speed": 5000,
         "enable_navigation": true,
         "enable_pagination": false,
-        "enable_scrollbar": true,
+        "enable_scrollbar": false,
         "scrollbar_hide": true,
         "destroy_swiper": true,
-        "pad_desk": 100,
-        "pad_lap": 80,
-        "pad_tab": 60,
-        "pad_mob": 40
+        "pad_desk": 20,
+        "pad_lap": 20,
+        "pad_tab": 20,
+        "pad_mob": 20
       }
     },
     "collection_list_wTCmHA": {
@@ -195,7 +191,6 @@
         ".grid {--grid-mobile-vertical-spacing: 2rem;}",
         "@media only screen and (min-width: 750px) {.grid {--grid-desktop-horizontal-spacing: 5rem; }}"
       ],
-      "name": "t:sections.collection-list.presets.name",
       "settings": {
         "title": "",
         "heading_size": "ts:!text-lg",
@@ -239,7 +234,6 @@
         ".rich-text:not(.rich-text--full-width) .rich-text__wrapper {width: 100%;}",
         ".rich-text__text {margin: 2rem auto 0; font-size: clamp(2.2rem, 2vw, 3rem); line-height: 1.5; max-width: 130rem;}"
       ],
-      "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -285,7 +279,6 @@
         ".grid {--grid-mobile-vertical-spacing: 2rem;}",
         "@media only screen and (min-width: 750px) {.grid {--grid-desktop-horizontal-spacing: 5rem; }}"
       ],
-      "name": "t:sections.collection-list.presets.name",
       "settings": {
         "title": "",
         "heading_size": "ts:!text-lg",
@@ -300,6 +293,53 @@
         "swipe_on_mobile": false,
         "padding_top": 80,
         "padding_bottom": 64
+      }
+    },
+    "mz_featured_collection_wwHJgV": {
+      "type": "mz_featured_collection",
+      "settings": {
+        "color_scheme": "",
+        "title": "Explore Our Category 2",
+        "title_size": "ts:!text-xl",
+        "weight": 400,
+        "collection": "new-arrivals",
+        "view_all": true,
+        "view_link_label": "Explore Now",
+        "view_all_style": "outline",
+        "text_alignment": "left",
+        "prodoct_limit": 6,
+        "container_width": 1920,
+        "full_width": false,
+        "box_color_scheme": "",
+        "bordered": false,
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "d_slides": 4.4,
+        "l_slides": 3.5,
+        "t_slides": 2.5,
+        "m_slides": 2,
+        "d_space": 80,
+        "l_space": 65,
+        "t_space": 50,
+        "m_space": 10,
+        "enable_loop": true,
+        "center_mode": false,
+        "mousewheel": true,
+        "enable_autoplay": false,
+        "autoplay_speed": 5000,
+        "enable_navigation": true,
+        "enable_pagination": false,
+        "enable_scrollbar": false,
+        "scrollbar_hide": true,
+        "destroy_swiper": true,
+        "pad_desk": 20,
+        "pad_lap": 20,
+        "pad_tab": 20,
+        "pad_mob": 20
       }
     },
     "multicolumn_jiBft6": {
@@ -344,7 +384,6 @@
       "custom_css": [
         "@media screen and (min-width: 750px) {.grid {--grid-desktop-horizontal-spacing: 6.5rem; }}"
       ],
-      "name": "t:sections.multicolumn.presets.name",
       "settings": {
         "title": "Maison Zeitaku Services",
         "heading_size": "ts:!text-xl",
@@ -375,6 +414,7 @@
     "collection_list_wTCmHA",
     "rich_text_Jmta4a",
     "collection_list_B6Jhjk",
+    "mz_featured_collection_wwHJgV",
     "multicolumn_jiBft6"
   ]
 }

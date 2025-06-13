@@ -74,14 +74,29 @@ swiper-slider,
 	@apply ts:opacity-20
 }
 .swiper-controls .swiper-button-prev {
-	@apply ts:left-[30.5%]
+	@apply ts:left-0
 }
 .swiper-controls .swiper-button-next {
-	@apply ts:right-[30.5%]
+	@apply ts:right-8
 }
 .swiper-controls .swiper-button-next,
 .swiper-controls .swiper-button-prev {
 	@apply ts:after:content-[""]
+}
+.wrapper.inline-title swiper-slider {
+	@apply ts:md:col-span-9 ts:md:-mr-12;
+}
+.wrapper.inline-title swiper-slider .card--product {
+	@apply ts:md:flex-row ts:md:gap-4;
+}
+.wrapper.inline-title swiper-slider .card__inner ~ .card__content > .card__information {
+	@apply ts:!p-0 ts:flex ts:flex-col ts:justify-between;
+}
+.wrapper.inline-title swiper-slider .card__heading {
+	@apply ts:!text-base ts:!font-normal;
+}
+.wrapper.inline-title swiper-slider .card-information .price {
+	@apply ts:!text-base ts:font-bold;
 }
 swiper-slider.grid-view .swiper-controls {
 	@apply ts:hidden;

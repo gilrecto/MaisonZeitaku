@@ -26,6 +26,7 @@
 {%- style -%}
 	#shopify-section-{{ section.id }} {
 		--text-align: {{ setting.text_alignment | default: 'center' }};
+		--weight: {{ setting.weight }};
 		--padding-xl: {{ setting.pad_desk | append: 'px' }};
 		--padding-lg: {{ setting.pad_lap | append: 'px' }};
 		--padding-md: {{ setting.pad_tab | append: 'px' }};
@@ -120,79 +121,81 @@
 
 <div class="featured-collection color-{{ setting.color_scheme }} custom-section">
 	<div class="page-width{% if section.settings.full_width %} ts:md:!px-0{% endif %}">
-		{%- if setting.title != blank -%}
-			<div class="title-area text-align ts:font-semibold ts:mb-12">
-				<h2 class="title {{ setting.title_size }} ts:!m-0">{{ setting.title }}</h2>
-				{%- if setting.view_all and setting.view_link_label != blank -%}
-					<a href="{{ setting.collection.url | default: '#' }}"
-						 class="{% if section.settings.view_all_style == 'link' %}link underlined-link btn-text-only{% elsif setting.view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %} view-colection ts:text-sm ts:font-semibold ts:no-underline"
-						 aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: setting.collection.title | escape }}">
-						{{ setting.view_link_label }}
-					</a>
-				{%- endif -%}
-			</div>
-		{%- endif -%}
-
-		<swiper-slider{% if setting.destroy_swiper %} destroy-on-mobile{% endif %}>
-			<div class="swiper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}{% if setting.center_mode %} swiper-center-mode{% endif %}"{% if settings.animations_reveal_on_scroll %} data-cascade style="--animation-order: 3;"{% endif %}>
-				<div class="swiper-wrapper{% if setting.bordered %} bordered-card{% endif %}">
-					{% assign skip_card_product_styles = false %}
-					{%- for product in setting.collection.products limit: setting.prodoct_limit -%}
-						<div class="swiper-slide product-item product-item--{{ product.id }} color-{{ setting.box_color_scheme }} ts:select-none">
-							{% render 'card-product',
-								card_product: product,
-								media_aspect_ratio: setting.image_ratio,
-								image_shape: setting.image_shape,
-								show_secondary_image: setting.show_secondary_image,
-								show_vendor: setting.show_vendor,
-								show_rating: setting.show_rating,
-								skip_styles: skip_card_product_styles,
-								section_id: section.id,
-								quick_add: section.settings.quick_add
-							%}
-						</div>
-						{%- assign skip_card_product_styles = true -%}
-					{%- else -%}
-						{%- for i in (1..setting.prodoct_limit) -%}
-							<div class="swiper-slide product-item product-item--{{ forloop.index }} color-{{ setting.box_color_scheme }} ts:select-none">
-								
-								{%- capture count -%}
-									{% cycle 1, 2, 3, 4 %}
-								{%- endcapture -%}
-
-								{%- assign idx = count |  plus: 0 -%}
-								{%- assign placeholder_image = 'product-apparel-' | append: idx -%}
-
+		<div class="wrapper{% if setting.title != blank %} inline-title ts:grid ts:md:grid-cols-12 ts:grid-cols-1 ts:max-md:gap-y-14 ts:border-t ts:border-b ts:border-gray2 ts:py-8{% endif %}">
+			{%- if setting.title != blank -%}
+				<div class="title-area text-align ts:md:col-span-3 ts:flex ts:md:flex-col ts:md:justify-between ts:items-start">
+					<h2 class="title {{ setting.title_size }} ts:!m-0 ts:!font-[var(--weight)]">{{ setting.title }}</h2>
+					{%- if setting.view_all and setting.view_link_label != blank -%}
+						<a href="{{ setting.collection.url | default: '#' }}"
+							 class="{% if section.settings.view_all_style == 'link' %}link underlined-link btn-text-only{% elsif setting.view_all_style == 'solid' %}button{% else %}button button--secondary ts:!border ts:!border-gray2{% endif %} view-colection ts:text-sm ts:font-semibold ts:no-underline"
+							 aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: setting.collection.title | escape }}">
+							{{ setting.view_link_label }}
+						</a>
+					{%- endif -%}
+				</div>
+			{%- endif -%}
+	
+			<swiper-slider{% if setting.destroy_swiper %} destroy-on-mobile{% endif %}>
+				<div class="swiper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}{% if setting.center_mode %} swiper-center-mode{% endif %}"{% if settings.animations_reveal_on_scroll %} data-cascade style="--animation-order: 3;"{% endif %}>
+					<div class="swiper-wrapper{% if setting.bordered %} bordered-card{% endif %}">
+						{% assign skip_card_product_styles = false %}
+						{%- for product in setting.collection.products limit: setting.prodoct_limit -%}
+							<div class="swiper-slide product-item product-item--{{ product.id }} color-{{ setting.box_color_scheme }} ts:select-none">
 								{% render 'card-product',
-									show_vendor: section.settings.show_vendor,
-									media_aspect_ratio: section.settings.image_ratio,
-									image_shape: section.settings.image_shape,
-									placeholder_image: placeholder_image
+									card_product: product,
+									media_aspect_ratio: setting.image_ratio,
+									image_shape: setting.image_shape,
+									show_secondary_image: setting.show_secondary_image,
+									show_vendor: setting.show_vendor,
+									show_rating: setting.show_rating,
+									skip_styles: skip_card_product_styles,
+									section_id: section.id,
+									quick_add: section.settings.quick_add
 								%}
 							</div>
+							{%- assign skip_card_product_styles = true -%}
+						{%- else -%}
+							{%- for i in (1..setting.prodoct_limit) -%}
+								<div class="swiper-slide product-item product-item--{{ forloop.index }} color-{{ setting.box_color_scheme }} ts:select-none">
+									
+									{%- capture count -%}
+										{% cycle 1, 2, 3, 4 %}
+									{%- endcapture -%}
+	
+									{%- assign idx = count |  plus: 0 -%}
+									{%- assign placeholder_image = 'product-apparel-' | append: idx -%}
+	
+									{% render 'card-product',
+										show_vendor: section.settings.show_vendor,
+										media_aspect_ratio: section.settings.image_ratio,
+										image_shape: section.settings.image_shape,
+										placeholder_image: placeholder_image
+									%}
+								</div>
+							{%- endfor -%}
 						{%- endfor -%}
-					{%- endfor -%}
+					</div>
 				</div>
-			</div>
-
-			{%- if setting.enable_pagination -%}
-				<div class="swiper-pagination bullets:-{{ section.id }} ts:!top-full ts:mt-8"></div>
+	
+				{%- if setting.enable_pagination -%}
+					<div class="swiper-pagination bullets:-{{ section.id }} ts:!top-full ts:mt-8"></div>
+				{%- endif -%}
+	
+				{%- if setting.enable_navigation -%}
+					<div class="swiper-controls">
+						<div class="swiper-nav swiper-button-prev swiper-prev--{{ section.id }}">{{- 'icon-swiper-arrow.svg' | inline_asset_content -}}</div>
+						<div class="swiper-nav swiper-button-next swiper-nxt--{{ section.id }}">{{- 'icon-swiper-arrow.svg' | inline_asset_content -}}</div>
+					</div>
+				{%- endif -%}
+				{%- if setting.enable_scrollbar -%}
+					<div class="swiper-scrollbar"></div>
+				{%- endif -%}
+			</swiper-slider>
+	
+			{%- if setting.image_shape == 'arch' -%}
+				{{ 'mask-arch.svg' | inline_asset_content }}
 			{%- endif -%}
-
-			{%- if setting.enable_navigation -%}
-				<div class="swiper-controls">
-					<div class="swiper-nav swiper-button-prev swiper-prev--{{ section.id }}">{{- 'icon-swiper-arrow.svg' | inline_asset_content -}}</div>
-					<div class="swiper-nav swiper-button-next swiper-nxt--{{ section.id }}">{{- 'icon-swiper-arrow.svg' | inline_asset_content -}}</div>
-				</div>
-			{%- endif -%}
-			{%- if setting.enable_scrollbar -%}
-				<div class="swiper-scrollbar"></div>
-			{%- endif -%}
-		</swiper-slider>
-
-		{%- if setting.image_shape == 'arch' -%}
-			{{ 'mask-arch.svg' | inline_asset_content }}
-		{%- endif -%}
+		</div>
 	</div>
 </div>
 
@@ -265,6 +268,15 @@
 				"default": "ts:!text-2xl"
 			},
 			{
+				"type": "range",
+				"id": "weight",
+				"min": 100,
+				"max": 900,
+				"step": 100,
+				"default": 400,
+				"label": "Heading Font Weight"
+			},
+			{
 				"type": "collection",
 				"id": "collection",
 				"label": "Featured Collection"
@@ -276,25 +288,11 @@
 				"default": true
 			},
 			{
-				"type": "range",
-				"id": "prodoct_limit",
-				"label": "Products To Show",
-				"min": 4,
-				"max": 15,
-				"step": 1,
-				"default": 5
-			},
-			{
 				"type": "text",
 				"id": "view_link_label",
 				"label": "View Collection label",
-				"default": "View Collection"
-			},
-			{
-				"type": "text_alignment",
-				"id": "text_alignment",
-				"label": "Product Card Text Alignment",
-				"default": "center"
+				"default": "View Collection",
+				"visible_if": "{{ section.settings.view_all}}"
 			},
 			{
 				"type": "select",
@@ -314,7 +312,23 @@
 						"label": "t:sections.featured-collection.settings.view_all_style.options__3.label"
 					}
 				],
-				"default": "solid"
+				"default": "solid",
+				"visible_if": "{{ section.settings.view_all}}"
+			},
+			{
+				"type": "text_alignment",
+				"id": "text_alignment",
+				"label": "Product Card Text Alignment",
+				"default": "center"
+			},
+			{
+				"type": "range",
+				"id": "prodoct_limit",
+				"label": "Products To Show",
+				"min": 4,
+				"max": 15,
+				"step": 1,
+				"default": 5
 			},
 			{
 				"type": "range",
