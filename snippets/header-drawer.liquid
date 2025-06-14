@@ -166,7 +166,7 @@
                 -%}
               </a>
             {%- endif -%}
-            <a href="{{ routes.cart_url }}" class="menu-drawer__cart link focus-inset ts:xl:hidden ts:uppercase ts:gap-2 ts:!inline-flex ts:items-center ts:text-base ts:!no-underline" id="cart-icon-bubble">
+            <a href="{{ routes.cart_url }}" class="menu-drawer__cart link focus-inset ts:xl:hidden ts:uppercase ts:gap-2 ts:!inline-flex ts:items-center ts:text-base ts:!no-underline">
               {% if cart == empty %}
                 <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
               {% else %}
