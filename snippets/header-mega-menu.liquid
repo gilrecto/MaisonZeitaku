@@ -31,7 +31,7 @@
                 assign menu_limit = 6
 
                 for block in section.blocks 
-                  if block.type == 'featured-collections' and block.settings.menu_handle == link.handle
+                  if block.type == 'featured_collections' and block.settings.menu_handle == link.handle
                     assign with_collections = true
                     assign menu_limit = 4
                   endif
@@ -82,7 +82,7 @@
                 </ul>
                 
                 {%- for block in section.blocks -%}
-                  {%- if block.type == 'featured-collections' and block.settings.menu_handle == link.handle -%}
+                  {%- if block.type == 'featured_collections' and block.settings.menu_handle == link.handle -%}
                     <div class="mega-menu-collections ts:col-span-4 ts:pl-[6vw]">
                       <div class="collections-list-wrapper ts:grid ts:grid-cols-3 ts:gap-8">
                         {%- for i in (1..3) -%}

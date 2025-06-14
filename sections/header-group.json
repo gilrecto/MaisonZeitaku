@@ -30,7 +30,7 @@
       "type": "header",
       "blocks": {
         "featured_collections_mzmD7k": {
-          "type": "featured-collections",
+          "type": "featured_collections",
           "settings": {
             "menu_handle": "women",
             "collection_1": "new-arrivals",
