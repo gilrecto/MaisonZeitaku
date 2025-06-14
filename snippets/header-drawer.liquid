@@ -30,10 +30,10 @@
                         class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
                       >
                         {{ link.title | escape }}
-                        <span class="svg-wrapper">
+                        <span class="svg-wrapper ts:!hidden">
                           {{- 'icon-arrow.svg' | inline_asset_content -}}
                         </span>
-                        <span class="svg-wrapper">
+                        <span class="svg-wrapper ts:*:!block">
                           {{- 'icon-caret.svg' | inline_asset_content -}}
                         </span>
                       </summary>
@@ -45,7 +45,7 @@
                         <div class="menu-drawer__inner-submenu">
                           <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
                             <span class="svg-wrapper">
-                              {{- 'icon-arrow.svg' | inline_asset_content -}}
+                              {{- 'icon-caret.svg' | inline_asset_content -}}
                             </span>
                             {{ link.title | escape }}
                           </button>
@@ -70,10 +70,10 @@
                                       class="menu-drawer__menu-item link link--text list-menu__item focus-inset"
                                     >
                                       {{ childlink.title | escape }}
-                                      <span class="svg-wrapper">
+                                      <span class="svg-wrapper ts:!hidden">
                                         {{- 'icon-arrow.svg' | inline_asset_content -}}
                                       </span>
-                                      <span class="svg-wrapper">
+                                      <span class="svg-wrapper ts:*:!block">
                                         {{- 'icon-caret.svg' | inline_asset_content -}}
                                       </span>
                                     </summary>
@@ -86,7 +86,7 @@
                                         aria-expanded="true"
                                       >
                                         <span class="svg-wrapper">
-                                          {{- 'icon-arrow.svg' | inline_asset_content -}}
+                                          {{- 'icon-caret.svg' | inline_asset_content -}}
                                         </span>
                                         {{ childlink.title | escape }}
                                       </button>

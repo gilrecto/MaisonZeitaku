@@ -49,7 +49,7 @@
     or section.settings.enable_follow_on_shop
   -%}
     {%- unless only_empty_brand -%}
-      <div class="footer__content-top page-width ts:2xl:!px-[9.896vw] ts:xl:!px-20 ts:!grid ts:xl:grid-cols-6 ts:lg:grid-cols-5 ts:grid-cols-1">
+      <div class="footer__content-top page-width ts:!grid ts:xl:grid-cols-8 ts:lg:grid-cols-5 ts:grid-cols-1">
         {%- if section.blocks.size > 0 -%}
           {%- liquid
             if section.blocks.size == 9
@@ -60,8 +60,30 @@
               assign footer_grid_class = 'grid--3-col-tablet'
             endif
           -%}
+
+        {%- if section.settings.logo != blank -%}
+          <div class="footer-block--logo ts:lg:col-span-2 ts:lg:row-span-1 ts:max-lg:row-1{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} ts:lg:pb-12 ts:pb-10"{% if settings.animations_reveal_on_scroll %} data-cascade{% endif %}>
+            <div class="footer--image-wrapper">
+              {%- assign image = section.settings.logo -%}
+              <a href="{{ routes.root_url }}" class="link link--text focus-inset ts:!block">
+                <span class="ts:sr-only">{{ shop.name }}</span>
+                {{
+                  image
+                  | image_url: width: 400
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '50, 100, 150, 200, 300, 400, 550, 800, 1100',
+                    height: image.height,
+                    width: image.width,
+                    class: "ts:w-[29rem]"
+                }}
+              </a>
+            </div>
+          </div>
+        {%- endif -%}
+
           <div
-            class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet {{ footer_grid_class }} ts:lg:col-span-3 ts:max-lg:row-1{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet {{ footer_grid_class }} ts:lg:col-span-3 ts:lg:col-start-1 ts:lg:row-2 ts:max-lg:row-3{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
             {% endif %}
@@ -162,7 +184,7 @@
         {%- endif -%}
 
         <div
-          class="footer-block--newsletter ts:lg:col-span-2 ts:xl:col-start-5 ts:max-lg:row-3 ts:!mt-0 ts:max-lg:pb-20{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          class="footer-block--newsletter ts:lg:col-span-3 ts:xl:col-start-6 ts:row-2 ts:!mt-0 ts:max-lg:pb-16{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
           {% endif %}
@@ -185,7 +207,7 @@
                       id="NewsletterForm--{{ section.id }}"
                       type="email"
                       name="contact[email]"
-                      class="field__input ts:!bg-[#1B1B1B] ts:!text-xs ts:!m-0"
+                      class="field__input ts:!bg-gray ts:!text-[rgba(var(--color-background))] ts:!text-xs ts:!m-0 ts:placeholder:!opacity-100 ts:!py-6 ts:placeholder:!text-[rgba(var(--color-background))]"
                       value="{{ form.email }}"
                       aria-required="true"
                       autocorrect="off"
@@ -201,7 +223,7 @@
                       placeholder="{{ 'newsletter.label' | t }}"
                       required
                     >
-                    <label class="field__label ts:!text-xs ts:!top-[calc(1.4rem+var(--inputs-border-width))]" for="NewsletterForm--{{ section.id }}">
+                    <label class="field__label ts:sr-only" for="NewsletterForm--{{ section.id }}">
                       {{ 'newsletter.label' | t }}
                     </label>
                     <button
@@ -254,28 +276,6 @@
             {%- render 'social-icons', class: 'footer__list-social' -%}
           {%- endif -%}
         </div>
-        {%- if section.settings.logo != blank -%}
-          <div class="footer__content-middle ts:lg:col-span-6 ts:lg:row-span-2 ts:max-lg:row-2{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} ts:md:pt-20 ts:pt-4 ts:lg:pb-28 ts:pb-16"{% if settings.animations_reveal_on_scroll %} data-cascade{% endif %}>
-            <div class="footer__content-middle-wrapper">
-              <div class="footer--image-wrapper">
-                {%- assign image = section.settings.logo -%}
-                <a href="{{ routes.root_url }}" class="link link--text focus-inset ts:!block">
-                  <span class="ts:sr-only">{{ shop.name }}</span>
-                  {{
-                    image
-                    | image_url: width: 1100
-                    | image_tag:
-                      loading: 'lazy',
-                      widths: '50, 100, 150, 200, 300, 400, 550, 800, 1100',
-                      height: image.height,
-                      width: image.width,
-                      class: "ts:w-full"
-                  }}
-                </a>
-              </div>
-            </div>
-          </div>
-        {%- endif -%}
       </div>
     {%- endunless -%}
   {%- endif -%}
@@ -351,17 +351,17 @@
   </div>
 
   {%- if section.settings.footer_badge != blank -%}
-    <div class="footer-badge--wrapper ts:absolute ts:lg:bottom-12 ts:bottom-8 ts:lg:right-12 ts:right-8 ts:overflow-hidden">
+    <div class="footer-badge--wrapper ts:absolute ts:lg:top-8 ts:max-lg:bottom-22 ts:lg:right-12 ts:right-8 ts:overflow-hidden">
       {%- assign image = section.settings.footer_badge -%}
        {{
           image
-          | image_url: width: 160
+          | image_url: width: 100
           | image_tag:
             loading: 'lazy',
             widths: '50, 100, 150, 200, 300, 400, 550, 800, 1100',
-            height: 160,
-            width: 160,
-            class: "ts:lg:w-3xs ts:w-40 ts:motion-safe:animate-[spin_15s_linear_infinite]"
+            height: 100,
+            width: 100,
+            class: "ts:lg:w-40 ts:w-32 ts:motion-safe:animate-[spin_15s_linear_infinite]"
         }}
     </div>
   {%- endif -%}

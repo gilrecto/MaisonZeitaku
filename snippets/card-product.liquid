@@ -441,11 +441,16 @@
             <a
               href="{{ card_product.url }}"
               id="CardLink-{{ section_id }}-{{ card_product.id }}"
-              class="full-unstyled-link"
+              class="full-unstyled-link ts:md:truncate ts:md:max-w-[5.5vw]"
               aria-labelledby="CardLink-{{ section_id }}-{{ card_product.id }} Badge-{{ section_id }}-{{ card_product.id }}"
             >
               {{ card_product.title | escape }}
             </a>
+
+            {%- if show_collection -%}
+              <span class="visually-hidden">{{ 'accessibility.collection' | t }}</span>
+              <div class="ts:text-[1rem] ts:font-normal">{{ card_product.collections.first.title }}</div>
+            {%- endif -%}
           </h3>
           <div class="card-information">
             {%- if show_vendor -%}

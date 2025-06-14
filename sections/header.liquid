@@ -51,10 +51,6 @@
     flex-wrap: wrap;
   }
 
-  summary.list-menu__item {
-    padding-right: 2.7rem;
-  }
-
   .list-menu__item {
     display: flex;
     align-items: center;
@@ -678,6 +674,90 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "featured-collections",
+      "name": "Featured Collections",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_handle",
+          "label": "Menu Handle",
+          "info": "Enter the handle of the menu you want to display the collections in."
+        },
+        {
+          "type": "header", 
+          "content": "Collection 1"
+        },
+        {
+          "type": "collection",
+          "id": "collection_1",
+          "label": "Collection",
+          "info": "Select the collection you want to display."
+        },
+        {
+          "type": "inline_richtext",
+          "id": "collection_1_title",
+          "label": "Collection Title",
+          "info": "Custom collection title.",
+          "visible_if": "{{ block.settings.collection_1 != blank }}"
+        },
+        {
+          "type": "image_picker",
+          "id": "collection_1_image",
+          "label": "Collection Image",
+          "info": "Custom collection image.",
+          "visible_if": "{{ block.settings.collection_1 != blank }}"
+        },
+        {
+          "type": "header", 
+          "content": "Collection 2"
+        },
+        {
+          "type": "collection",
+          "id": "collection_2",
+          "label": "Collection",
+          "info": "Select the collection you want to display."
+        },
+        {
+          "type": "inline_richtext",
+          "id": "collection_2_title",
+          "label": "Collection Title",
+          "info": "Custom collection title.",
+          "visible_if": "{{ block.settings.collection_2 != blank }}"
+        },
+        {
+          "type": "image_picker",
+          "id": "collection_2_image",
+          "label": "Collection Image",
+          "info": "Custom collection image.",
+          "visible_if": "{{ block.settings.collection_2 != blank }}"
+        },
+        {
+          "type": "header", 
+          "content": "Collection 3"
+        },
+        {
+          "type": "collection",
+          "id": "collection_3",
+          "label": "Collection",
+          "info": "Select the collection you want to display."
+        },
+        {
+          "type": "inline_richtext",
+          "id": "collection_3_title",
+          "label": "Collection Title",
+          "info": "Custom collection title.",
+          "visible_if": "{{ block.settings.collection_3 != blank }}"
+        },
+        {
+          "type": "image_picker",
+          "id": "collection_3_image",
+          "label": "Collection Image",
+          "info": "Custom collection image.",
+          "visible_if": "{{ block.settings.collection_3 != blank }}"
+        }
+      ]
     }
   ]
 }

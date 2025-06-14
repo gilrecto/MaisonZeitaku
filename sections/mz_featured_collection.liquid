@@ -33,7 +33,7 @@
 		--padding-sm: {{ setting.pad_mob | append: 'px' }};
 		--page-width: {{ setting.container_width | append: 'px' }};
 		{% if section.settings.full_width %}
-		--page-width: 100%;
+			--page-width: 100%;
 		{% endif %}
 	}
 
@@ -121,13 +121,13 @@
 
 <div class="featured-collection color-{{ setting.color_scheme }} custom-section">
 	<div class="page-width{% if section.settings.full_width %} ts:md:!px-0{% endif %}">
-		<div class="wrapper{% if setting.title != blank %} inline-title ts:grid ts:md:grid-cols-12 ts:grid-cols-1 ts:max-md:gap-y-14 ts:border-t ts:border-b ts:border-gray2 ts:py-8{% endif %}">
+		<div class="wrapper{% if setting.title != blank %} inline-title ts:grid ts:md:grid-cols-12 ts:grid-cols-1 ts:max-md:gap-y-14 ts:border-t ts:border-b ts:border-gray2 ts:py-8 ts:max-md:relative ts:max-md:pb-40{% endif %}{% if section.settings.full_width %} ts:md:mx-12{% endif %}">
 			{%- if setting.title != blank -%}
-				<div class="title-area text-align ts:md:col-span-3 ts:flex ts:md:flex-col ts:md:justify-between ts:items-start">
+				<div class="title-area text-align ts:lg:col-span-3 ts:md:col-span-4 ts:flex ts:md:flex-col ts:md:justify-between ts:md:items-start ts:md:gap-8">
 					<h2 class="title {{ setting.title_size }} ts:!m-0 ts:!font-[var(--weight)]">{{ setting.title }}</h2>
 					{%- if setting.view_all and setting.view_link_label != blank -%}
 						<a href="{{ setting.collection.url | default: '#' }}"
-							 class="{% if section.settings.view_all_style == 'link' %}link underlined-link btn-text-only{% elsif setting.view_all_style == 'solid' %}button{% else %}button button--secondary ts:!border ts:!border-gray2{% endif %} view-colection ts:text-sm ts:font-semibold ts:no-underline"
+							 class="{% if section.settings.view_all_style == 'link' %}link underlined-link btn-text-only{% elsif setting.view_all_style == 'solid' %}button{% else %}button button--secondary ts:!border ts:!border-gray2{% endif %} view-colection ts:text-sm ts:font-semibold ts:no-underline ts:max-md:!absolute ts:max-md:bottom-8 ts:max-md:left-1/2 ts:max-md:-translate-x-1/2"
 							 aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: setting.collection.title | escape }}">
 							{{ setting.view_link_label }}
 						</a>
@@ -147,6 +147,7 @@
 									image_shape: setting.image_shape,
 									show_secondary_image: setting.show_secondary_image,
 									show_vendor: setting.show_vendor,
+									show_collection: setting.show_collection,
 									show_rating: setting.show_rating,
 									skip_styles: skip_card_product_styles,
 									section_id: section.id,
@@ -429,6 +430,12 @@
 				"id": "show_vendor",
 				"default": false,
 				"label": "t:sections.featured-collection.settings.show_vendor.label"
+			},
+			{
+				"type": "checkbox",
+				"id": "show_collection",
+				"default": false,
+				"label": "Show Category"
 			},
 			{
 				"type": "checkbox",

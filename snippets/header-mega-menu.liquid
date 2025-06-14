@@ -23,23 +23,36 @@
                 >
                   {{- link.title | escape -}}
                 </span>
-                {{- 'icon-caret.svg' | inline_asset_content -}}
+                {% comment %} {{- 'icon-caret.svg' | inline_asset_content -}} {% endcomment %}
               </summary>
+
+              {%- liquid
+                assign with_collections = false
+                assign menu_limit = 6
+
+                for block in section.blocks 
+                  if block.type == 'featured-collections' and block.settings.menu_handle == link.handle
+                    assign with_collections = true
+                    assign menu_limit = 4
+                  endif
+                endfor
+              -%}
+
               <div
                 id="MegaMenu-Content-{{ forloop.index }}"
-                class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
+                class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup{% if with_collections %} ts:grid ts:grid-cols-7{% endif %} page-width"
                 tabindex="-1"
               >
                 <ul
-                  class="mega-menu__list page-width{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}"
+                  class="mega-menu__list{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}{%  if with_collections %} ts:!grid-cols-4 ts:col-span-3 ts:2xl:!gap-x-16 ts:!gap-x-8{% endif %}"
                   role="list"
                 >
-                  {%- for childlink in link.links -%}
+                  {%- for childlink in link.links limit: menu_limit -%}
                     <li>
                       <a
                         id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
                         href="{{ childlink.url }}"
-                        class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
+                        class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %} ts:!text-sm ts:!leading-none ts:!font-semibold ts:uppercase ts:mb-8 ts:!p-0"
                         {% if childlink.current %}
                           aria-current="page"
                         {% endif %}
@@ -53,7 +66,7 @@
                               <a
                                 id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
                                 href="{{ grandchildlink.url }}"
-                                class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
+                                class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %} ts:!text-xs ts:!py-1.5"
                                 {% if grandchildlink.current %}
                                   aria-current="page"
                                 {% endif %}
@@ -67,6 +80,55 @@
                     </li>
                   {%- endfor -%}
                 </ul>
+                
+                {%- for block in section.blocks -%}
+                  {%- if block.type == 'featured-collections' and block.settings.menu_handle == link.handle -%}
+                    <div class="mega-menu-collections ts:col-span-4 ts:pl-[6vw]">
+                      <div class="collections-list-wrapper ts:grid ts:grid-cols-3 ts:gap-8">
+                        {%- for i in (1..3) -%}
+                          {%- assign collection_id = 'collection_' | append: i -%}
+                          {%- assign collection_title_id = 'collection_' | append: i | append: '_title'-%}
+                          {%- assign collection_image_id = 'collection_' | append: i | append: '_image'-%}
+                          
+                          {%- assign collection = block.settings[collection_id] -%}
+                          {%- assign collection_title = block.settings[collection_title_id] -%}
+                          {%- assign collection_image = block.settings[collection_image_id] -%}
+                          {%- assign collection_url = collection.url -%}
+
+                          {%- if collection != blank -%}
+                            <a href="{{ collection_url }}" class="mega-menu-collections__link" >
+                              <div class="mega-menu-collections__image-wrapper media media--transparent ts:mb-4 ts:aspect-square">
+                                {%- if collection_image != blank -%}
+                                  {%- assign image = collection_image -%}
+                                {%- else -%}
+                                  {%- assign image = collection.featured_image -%}
+                                {%- endif -%}
+
+                                {{
+                                  image
+                                  | image_url: width: 300
+                                  | image_tag:
+                                    loading: 'lazy',
+                                    widths: '50, 100, 150, 200, 300, 400, 550, 800, 1100',
+                                    height: image.height,
+                                    width: image.width,
+                                    class: "motion-reduce"
+                                }}
+                              </div>
+                              <div class="mega-menu-collections__title ts:text-sm ts:font-semibold">
+                                {%- if collection_title != blank -%}
+                                  {{ collection_title | escape }}
+                                {%- else -%}
+                                  {{ collection.title | escape }}
+                                {%- endif -%}
+                              </div>
+                            </a>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
               </div>
             </details>
           </header-menu>

@@ -28,6 +28,26 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "featured_collections_mzmD7k": {
+          "type": "featured-collections",
+          "settings": {
+            "menu_handle": "women",
+            "collection_1": "new-arrivals",
+            "collection_1_title": "New Arrival",
+            "collection_1_image": "shopify:\/\/shop_images\/mega_menu_img1.png",
+            "collection_2": "wome-s-bag",
+            "collection_2_title": "Best-selling Tops",
+            "collection_2_image": "shopify:\/\/shop_images\/mega_menu_img2.png",
+            "collection_3": "women-s-shoes",
+            "collection_3_title": "Accessories",
+            "collection_3_image": "shopify:\/\/shop_images\/mega_menu_img3.png"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collections_mzmD7k"
+      ],
       "settings": {
         "logo_position": "middle-center",
         "mobile_logo_position": "left",
@@ -36,7 +56,7 @@
         "sticky_header_type": "reduce-logo-size",
         "show_line_separator": false,
         "color_scheme": "scheme-1",
-        "menu_color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-06f9b5c4-c6cd-4966-9b79-ffca1a26867b",
         "enable_country_selector": true,
         "enable_language_selector": false,
         "enable_customer_avatar": false,

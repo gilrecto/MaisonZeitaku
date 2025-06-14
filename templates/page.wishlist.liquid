@@ -3,13 +3,17 @@
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 
 <div class="page-width">
-  <h1 class="main-page-title page-title h0">{{ page.title }}</h1>
-  
-  <div class="wishlist-container">
-    <div id="wishlist-items" class="grid product-grid grid--2-col-tablet-down grid--4-col-desktop">
-      <p id="wishlist-empty" class="wishlist-empty">{{ 'products.wishlist.empty_wishlist' | t }}</p>
-      <!-- Wishlist items will be loaded here via JS -->
-    </div>
+  <div class="content-wrapper ts:lg:py-20 ts:py-12">
+    <h1 class="main-page-title page-title h0 ts:text-center ts:!text-xl ts:uppercase ts:!font-normal">
+      {{ page.title }}
+    </h1>
+    
+    <div class="wishlist-container ts:text-center">
+      <div id="wishlist-items" class="grid product-grid grid--2-col-tablet-down grid--4-col-desktop">
+        <p id="wishlist-empty" class="wishlist-empty ts:!text-base ts:w-full">{{ 'products.wishlist.empty_wishlist' | t }}</p>
+        <!-- Wishlist items will be loaded here via JS -->
+      </div>
+  </div>
   </div>
   
   <script>
@@ -61,7 +65,7 @@
               const formattedPrice = formatMoney(variant.price);
               
               const productCard = document.createElement('div');
-              productCard.className = 'grid__item';
+              productCard.className = 'grid__item ts:max-sm:!w-full ts:max-sm:!max-w-full';
               productCard.dataset.productId = product.id;
               
               productCard.innerHTML = `
@@ -102,12 +106,12 @@
                       </div>
                     </div>
                     <div class="card__actions">
-                      <a href="${productUrl}" class="button button--primary">
+                      <a href="${productUrl}" class="button button--primary ts:!border">
                         {{ 'products.product.view_full_details' | t }}
                       </a>
                       <button 
                         type="button" 
-                        class="button button--secondary remove-wishlist-item"
+                        class="button button--secondary remove-wishlist-item ts:!border ts:!border-[rgba(var(--color-foreground))]"
                         data-product-id="${product.id}"
                       >
                         {{ 'products.wishlist.remove_from_wishlist' | t }}

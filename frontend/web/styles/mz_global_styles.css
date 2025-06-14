@@ -29,13 +29,13 @@ button, a, .button, .btn {
 	@apply ts:!py-[0.8rem] ts:!px-5;
 }
 .header__menu-item {
-	@apply ts:2xl:px-6 ts:px-5 ts:uppercase ts:font-bold;
+	@apply ts:2xl:px-6 ts:px-4 ts:uppercase ts:font-bold;
 }
 .header__menu-item.menu-item--sale {
 	@apply ts:!text-[#DA0000];
 }
 .header__heading-logo {
-	@apply ts:max-md:max-w-[15.5rem]
+	@apply ts:max-2xl:max-w-[18.5rem] ts:max-md:max-w-[15.5rem];
 }
 .header__icon .icon {
 	@apply ts:w-12 ts:h-12;
@@ -48,6 +48,12 @@ button, a, .button, .btn {
 }
 .menu-drawer__menu-item {
 	@apply ts:!text-base ts:font-semibold ts:uppercase;
+}
+.menu-drawer__menu-item .icon-caret {
+	@apply ts:relative ts:h-auto ts:right-[unset] ts:top-[unset];
+}
+.menu-drawer__menu .icon-caret {
+	@apply ts:-rotate-90;
 }
 swiper-slider .bordered-card .swiper-slide .card-wrapper .card__inner {
 	border: 1px solid rgba(var(--color-secondary-button-text));
@@ -84,13 +90,13 @@ swiper-slider,
 	@apply ts:after:content-[""]
 }
 .wrapper.inline-title swiper-slider {
-	@apply ts:md:col-span-9 ts:md:-mr-12;
+	@apply ts:lg:col-span-9 ts:md:col-span-8 ts:md:-mr-12;
 }
 .wrapper.inline-title swiper-slider .card--product {
-	@apply ts:md:flex-row ts:md:gap-4;
+	@apply ts:xl:flex-row ts:xl:gap-4;
 }
 .wrapper.inline-title swiper-slider .card__inner ~ .card__content > .card__information {
-	@apply ts:!p-0 ts:flex ts:flex-col ts:justify-between;
+	@apply ts:xl:!p-0 ts:xl:flex ts:xl:flex-col ts:xl:justify-between;
 }
 .wrapper.inline-title swiper-slider .card__heading {
 	@apply ts:!text-base ts:!font-normal;
