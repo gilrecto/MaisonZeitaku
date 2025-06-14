@@ -9,6 +9,7 @@ class CartDrawer extends HTMLElement {
 
   setHeaderCartIconAccessibility() {
     const cartLink = document.querySelector('#cart-icon-bubble');
+    console.log(cartLink);
     if (!cartLink) return;
 
     cartLink.setAttribute('role', 'button');
