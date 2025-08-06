@@ -24,7 +24,7 @@
         "buttons_xHy9W6": {
           "type": "buttons",
           "settings": {
-            "button_url": "shopify:\/\/collections\/new-arrivals",
+            "button_url": "shopify://collections/new-arrivals",
             "button_text": "Shop New Arrivals",
             "btn_style": "button--secondary"
           }
@@ -32,7 +32,7 @@
         "buttons_Jxj6jH": {
           "type": "buttons",
           "settings": {
-            "button_url": "shopify:\/\/collections",
+            "button_url": "shopify://collections",
             "button_text": "Shop Collections",
             "btn_style": "button--primary"
           }
@@ -44,16 +44,16 @@
         "buttons_Jxj6jH"
       ],
       "custom_css": [
-        "@media only screen and (max-width: 767px) {.media-banner {aspect-ratio: 3\/4 !important; }}"
+        "@media only screen and (max-width: 767px) {.media-banner {aspect-ratio: 3/4 !important; }}"
       ],
       "settings": {
         "color_scheme": "scheme-3",
         "banner_type": "image",
         "add_overlay": false,
         "overlay_opacity": 0.1,
-        "enable_anim": true,
-        "banner_image": "shopify:\/\/shop_images\/hp_banner_new.jpg",
-        "banner_img_mb": "shopify:\/\/shop_images\/hp_banner_new_mob.jpg",
+        "enable_anim": false,
+        "banner_image": "shopify://shop_images/FP1A7749.jpg",
+        "banner_img_mb": "shopify://shop_images/hp_banner_new_mob.jpg",
         "content_alignment_h": "ts:md:items-center",
         "content_alignment_v": "ts:md:justify-end",
         "text_alignment": "center",
@@ -74,7 +74,7 @@
           "settings": {
             "title": "Men’s",
             "collection": "men-s-shoes",
-            "image": "shopify:\/\/shop_images\/collection1.jpg",
+            "image": "shopify://shop_images/collection1.jpg",
             "btn_text": "Shop Mens",
             "btn_link": "",
             "btn_style": "button--secondary"
@@ -85,7 +85,7 @@
           "settings": {
             "title": "Women’s",
             "collection": "women-s-shoes",
-            "image": "shopify:\/\/shop_images\/collection2.jpg",
+            "image": "shopify://shop_images/collection2.jpg",
             "btn_text": "Shop Women’s",
             "btn_link": "",
             "btn_style": "button--secondary"
@@ -174,7 +174,7 @@
           "settings": {
             "title": "Explore our Outerwear",
             "collection": "men-s-bag",
-            "image": "shopify:\/\/shop_images\/collection3.jpg",
+            "image": "shopify://shop_images/collection3.jpg",
             "btn_text": "Shop Outerwear",
             "btn_link": "",
             "btn_style": "button--secondary"
@@ -185,7 +185,7 @@
           "settings": {
             "title": "Explore our Footwear",
             "collection": "men-s-shoes",
-            "image": "shopify:\/\/shop_images\/collection4.jpg",
+            "image": "shopify://shop_images/collection4.jpg",
             "btn_text": "Shop Footwear",
             "btn_link": "",
             "btn_style": "button--secondary"
@@ -231,7 +231,7 @@
         "text_cGj4Xf": {
           "type": "text",
           "settings": {
-            "text": "<p>Maison Zeitaku is where refined craftsmanship meets modern luxury—each piece a statement of individuality, purpose, and enduring style.<\/p>"
+            "text": "<p>Maison Zeitaku is where refined craftsmanship meets modern luxury—each piece a statement of individuality, purpose, and enduring style.</p>"
           }
         }
       },
@@ -262,7 +262,7 @@
           "settings": {
             "title": "Explore our Accessories",
             "collection": "men-s-bag",
-            "image": "shopify:\/\/shop_images\/collection5.jpg",
+            "image": "shopify://shop_images/collection5.jpg",
             "btn_text": "Shop Mens",
             "btn_link": "",
             "btn_style": "button--secondary"
@@ -273,7 +273,7 @@
           "settings": {
             "title": "Explore our Bags",
             "collection": "wome-s-bag",
-            "image": "shopify:\/\/shop_images\/collection6.jpg",
+            "image": "shopify://shop_images/collection6.jpg",
             "btn_text": "Shop Women’s",
             "btn_link": "",
             "btn_style": "button--secondary"
@@ -359,9 +359,9 @@
         "column_hb9REx": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/service1.jpg",
+            "image": "shopify://shop_images/service1.jpg",
             "title": "Bespoke Personalization",
-            "text": "<p>Make your Maison Zeitaku piece truly your own. Select bags, luggage, belts, leather accessories, and...<\/p>",
+            "text": "<p>Make your Maison Zeitaku piece truly your own. Select bags, luggage, belts, leather accessories, and...</p>",
             "link_label": "Explore Personalization",
             "link": "#"
           }
@@ -369,9 +369,9 @@
         "column_ynaVcm": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/service2.jpg",
+            "image": "shopify://shop_images/service2.jpg",
             "title": "Reserve Your Appointment",
-            "text": "<p>Enjoy a personalized shopping experience with a dedicated Style Advisor. Book an appointment at your...<\/p>",
+            "text": "<p>Enjoy a personalized shopping experience with a dedicated Style Advisor. Book an appointment at your...</p>",
             "link_label": "Reserve Your Appointment",
             "link": "#"
           }
@@ -379,9 +379,9 @@
         "column_kkjAqJ": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/service3.jpg",
+            "image": "shopify://shop_images/service3.jpg",
             "title": "Boutique Pickup",
-            "text": "<p>Shop online and collect your order at a Maison Zeitaku boutique of your choice—seamlessly...<\/p>",
+            "text": "<p>Shop online and collect your order at a Maison Zeitaku boutique of your choice—seamlessly...</p>",
             "link_label": "Learn More",
             "link": "#"
           }
