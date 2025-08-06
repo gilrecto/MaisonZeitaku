@@ -123,9 +123,9 @@
       "settings": {
         "color_scheme": "",
         "title": "Explore Our Category 1",
-        "title_size": "ts:!text-xl",
+        "title_size": "ts:!text-base",
         "weight": 400,
-        "collection": "new-arrivals",
+        "collection": "frontpage",
         "view_all": true,
         "view_link_label": "Explore Now",
         "view_all_style": "outline",
