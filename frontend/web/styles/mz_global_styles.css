@@ -161,6 +161,36 @@ body.password .media-banner .contents-wrapper .rte {
 .contact .field_wrapper .field__input {
 	@apply ts:text-xs ts:!py-6 ts:!px-8 ts:border ts:border-gray ts:placeholder:opacity-100 ts:placeholder:text-gray;
 }
+.product-condition--popup-button {
+	@apply ts:relative;
+}
+.product-condition--popup-button:after {
+	@apply ts:content-["?"] ts:absolute ts:right-0 ts:bg-[#f3f1ed] ts:w-8 ts:h-8 ts:text-xs ts:leading-[1.7] ts:text-center ts:rounded-full;
+}
+.product__accordion.accordion:last-of-type {
+	@apply ts:border-b-0;
+}
+.product-condition fieldset {
+	@apply ts:relative ts:flex ts:items-center ts:justify-center ts:mt-9 ts:text-xs ts:font-medium ts:select-none;
+}
+.product-condition fieldset:before {
+	@apply ts:content-[""] ts:absolute ts:block ts:right-[10%] ts:left-[10%] ts:top-2 ts:-z-1 ts:h-0 ts:border-b ts:border-b-[rgba(var(--color-foreground))];
+}
+.product-condition fieldset label {
+	@apply ts:flex-[1] ts:flex ts:flex-col ts:items-center ts:gap-2;
+}
+.product-condition fieldset input[type="radio"] {
+	@apply ts:appearance-none ts:w-5 ts:h-5 ts:border ts:border-[rgba(var(--color-foreground))] ts:bg-[rgba(var(--color-background))] ts:rounded-full;
+}
+.product-condition fieldset input[type="radio"]:checked {
+	@apply ts:bg-[rgba(var(--color-foreground))];
+}
+.product-popup-modal__content-info > h1 {
+	@apply ts:mb-8 ts:!text-[calc(var(--font-heading-scale)*2rem)];
+}
+.product-popup-modal__content-info > *:not(h4) {
+	@apply ts:mb-6 ts:text-sm;
+}
 
 
 @media only screen and (min-width: 1200px) {

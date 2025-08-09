@@ -459,19 +459,41 @@
                 </div>
               {%- when 'popup' -%}
                 <modal-opener
-                  class="product-popup-modal__opener quick-add-hidden"
+                  class="product-popup-modal__opener quick-add-hidden ts:!block ts:leading-none ts:py-4 ts:border-t ts:border-[rgba(var(--color-foreground),.08)]"
                   data-modal="#PopupModal-{{ block.id }}"
                   {{ block.shopify_attributes }}
                 >
                   <button
                     id="ProductPopup-{{ block.id }}"
-                    class="product-popup-modal__button ts:no-underline ts:text-sm ts:uppercase ts:font-semibold"
+                    class="{{ block.settings.text | handleize }}--popup-button product-popup-modal__button ts:no-underline ts:!text-xs ts:uppercase ts:font-semibold ts:!min-h-auto ts:w-full ts:text-left ts:!pr-0 ts:cursor-pointer"
                     type="button"
                     aria-haspopup="dialog"
                   >
                     {{ block.settings.text | default: block.settings.page.title | escape }}
                   </button>
                 </modal-opener>
+
+                {%- if block.settings.text == 'Product Condition' and product.metafields.data.product_condition != blank -%}
+                  {%- assign conditions = 'fair,good,great,excellent,pristine' | split: ',' -%}
+                  <div class="product-condition">
+                    <p class="condition ts:text-xs">
+                      <b>{{ product.metafields.data.product_condition }} {{ 'products.product.product_condition.label' | t }}</b>
+                      {%- if product.metafields.data.describe_more != blank -%}
+                        <span class="ts:block">{{ product.metafields.data.describe_more | metafield_text }}</span>
+                      {%- endif -%}
+                    </p>
+                    <fieldset>
+                      {%- for condition in conditions -%}
+                        {%- assign condition_label = condition | capitalize -%}
+                        {% assign block_id = block.id | remove: "popup" %}
+                        <label>
+                          <input id="{{ condition | append: block_id }}" type="radio" name="{{ condition_label }}" disabled="" {% if condition_label == product.metafields.data.product_condition %} checked=""{% endif %}>
+                          <span>{{ condition_label }}</span>
+                        </label>
+                      {%- endfor -%}
+                    </fieldset>
+                  </div>
+                {%- endif -%}
               {%- when 'share' -%}
                 {% liquid
                   assign share_url = product.selected_variant.url | default: product.url | prepend: request.origin
