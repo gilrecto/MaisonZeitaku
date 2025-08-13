@@ -32,8 +32,8 @@
         "buttons_Jxj6jH": {
           "type": "buttons",
           "settings": {
-            "button_url": "shopify://collections",
-            "button_text": "Shop Collections",
+            "button_url": "shopify://collections/footwear",
+            "button_text": "Shop Footwear",
             "btn_style": "button--primary"
           }
         }
@@ -52,8 +52,8 @@
         "add_overlay": false,
         "overlay_opacity": 0.1,
         "enable_anim": false,
-        "banner_image": "shopify://shop_images/FP1A7749.jpg",
-        "banner_img_mb": "shopify://shop_images/hp_banner_new_mob.jpg",
+        "banner_image": "shopify://shop_images/FP1A7470.jpg",
+        "banner_img_mb": "shopify://shop_images/FP1A7470.jpg",
         "content_alignment_h": "ts:md:items-center",
         "content_alignment_v": "ts:md:justify-end",
         "text_alignment": "center",
@@ -74,7 +74,7 @@
           "settings": {
             "title": "Footwear",
             "collection": "men-s-shoes",
-            "image": "shopify://shop_images/collection1.jpg",
+            "image": "shopify://shop_images/FP1A7749_1.jpg",
             "btn_text": "Shop Mens",
             "btn_link": "",
             "btn_style": "button--secondary"
@@ -85,16 +85,28 @@
           "settings": {
             "title": "Apparel",
             "collection": "women-s-shoes",
-            "image": "shopify://shop_images/collection2.jpg",
+            "image": "shopify://shop_images/KJ2A5124.jpg",
             "btn_text": "Shop Women’s",
             "btn_link": "",
             "btn_style": "button--secondary"
+          }
+        },
+        "featured_collection_AC9tMY": {
+          "type": "featured_collection",
+          "disabled": true,
+          "settings": {
+            "title": "",
+            "collection": "",
+            "btn_text": "",
+            "btn_link": "",
+            "btn_style": "button--primary"
           }
         }
       },
       "block_order": [
         "featured_collection_XyKJ6j",
-        "featured_collection_z8jbcj"
+        "featured_collection_z8jbcj",
+        "featured_collection_AC9tMY"
       ],
       "custom_css": [
         ".collection-list {padding: 0;}",
@@ -122,10 +134,10 @@
       "custom_css": [],
       "settings": {
         "color_scheme": "",
-        "title": "Explore Our Category 1",
+        "title": "Accessories",
         "title_size": "ts:!text-base",
         "weight": 400,
-        "collection": "wome-s-bag",
+        "collection": "accessories",
         "view_all": true,
         "view_link_label": "Explore Now",
         "view_all_style": "outline",
@@ -309,10 +321,10 @@
       "type": "mz_featured_collection",
       "settings": {
         "color_scheme": "",
-        "title": "Explore Our Category 2",
-        "title_size": "ts:!text-xl",
+        "title": "Pants",
+        "title_size": "ts:!text-base",
         "weight": 400,
-        "collection": "new-arrivals",
+        "collection": "pants",
         "view_all": true,
         "view_link_label": "Explore Now",
         "view_all_style": "outline",
