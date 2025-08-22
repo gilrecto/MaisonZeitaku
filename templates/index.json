@@ -296,6 +296,7 @@
         "featured_collection_eibEDb",
         "featured_collection_hpKfia"
       ],
+      "disabled": true,
       "custom_css": [
         ".collection-list {padding: 0;}",
         ".grid {--grid-mobile-vertical-spacing: 2rem;}",
@@ -319,6 +320,7 @@
     },
     "mz_featured_collection_wwHJgV": {
       "type": "mz_featured_collection",
+      "disabled": true,
       "settings": {
         "color_scheme": "",
         "title": "Bags",
