@@ -219,7 +219,7 @@
         "text_alignment": "left",
         "container_width": 1720,
         "full_width": false,
-        "image_ratio": "adapt",
+        "image_ratio": "portrait",
         "columns_desktop": 2,
         "color_scheme": "",
         "show_view_all": false,
