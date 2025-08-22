@@ -75,8 +75,8 @@
             "title": "Footwear",
             "collection": "men-s-shoes",
             "image": "shopify://shop_images/FP1A7749_1.jpg",
-            "btn_text": "Shop Mens",
-            "btn_link": "",
+            "btn_text": "Shop Footwear",
+            "btn_link": "shopify://collections/footwear",
             "btn_style": "button--secondary"
           }
         },
@@ -86,7 +86,7 @@
             "title": "Apparel",
             "collection": "women-s-shoes",
             "image": "shopify://shop_images/KJ2A5124.jpg",
-            "btn_text": "Shop Women’s",
+            "btn_text": "Shop Apparel",
             "btn_link": "",
             "btn_style": "button--secondary"
           }
@@ -184,21 +184,21 @@
         "featured_collection_WitEJC": {
           "type": "featured_collection",
           "settings": {
-            "title": "Explore our Outerwear",
-            "collection": "men-s-bag",
-            "image": "shopify://shop_images/collection3.jpg",
+            "title": "Explore our Pants",
+            "collection": "pants",
+            "image": "shopify://shop_images/KJ2A5023.jpg",
             "btn_text": "Shop Outerwear",
-            "btn_link": "",
+            "btn_link": "shopify://collections/pants",
             "btn_style": "button--secondary"
           }
         },
         "featured_collection_mNJ8Aq": {
           "type": "featured_collection",
           "settings": {
-            "title": "Explore our Footwear",
-            "collection": "men-s-shoes",
-            "image": "shopify://shop_images/collection4.jpg",
-            "btn_text": "Shop Footwear",
+            "title": "Explore our Accessories",
+            "collection": "accessories",
+            "image": "shopify://shop_images/FP1A7701.jpg",
+            "btn_text": "Shop Accessories",
             "btn_link": "",
             "btn_style": "button--secondary"
           }
