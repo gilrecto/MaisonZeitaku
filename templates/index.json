@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "mz_banner_7BXHTy": {
@@ -15,7 +24,7 @@
         "buttons_xHy9W6": {
           "type": "buttons",
           "settings": {
-            "button_url": "shopify:\/\/collections\/new-arrivals",
+            "button_url": "shopify://collections/new-arrivals",
             "button_text": "Shop New Arrivals",
             "btn_style": "button--secondary"
           }
@@ -23,8 +32,8 @@
         "buttons_Jxj6jH": {
           "type": "buttons",
           "settings": {
-            "button_url": "shopify:\/\/collections",
-            "button_text": "Shop Collections",
+            "button_url": "shopify://collections/footwear",
+            "button_text": "Shop Footwear",
             "btn_style": "button--primary"
           }
         }
@@ -35,7 +44,7 @@
         "buttons_Jxj6jH"
       ],
       "custom_css": [
-        "@media only screen and (max-width: 767px) {.media-banner {aspect-ratio: 3\/4 !important; }}"
+        "@media only screen and (max-width: 767px) {.media-banner {aspect-ratio: 3/4 !important; }}"
       ],
       "settings": {
         "color_scheme": "scheme-3",
@@ -43,8 +52,8 @@
         "add_overlay": false,
         "overlay_opacity": 0.1,
         "enable_anim": false,
-        "banner_image": "shopify:\/\/shop_images\/FP1A7749.jpg",
-        "banner_img_mb": "shopify:\/\/shop_images\/hp_banner_new_mob.jpg",
+        "banner_image": "shopify://shop_images/FP1A7470.jpg",
+        "banner_img_mb": "shopify://shop_images/FP1A7470.jpg",
         "content_alignment_h": "ts:md:items-center",
         "content_alignment_v": "ts:md:justify-end",
         "text_alignment": "center",
@@ -63,29 +72,41 @@
         "featured_collection_XyKJ6j": {
           "type": "featured_collection",
           "settings": {
-            "title": "Men’s",
+            "title": "Footwear",
             "collection": "men-s-shoes",
-            "image": "shopify:\/\/shop_images\/collection1.jpg",
-            "btn_text": "Shop Mens",
-            "btn_link": "",
+            "image": "shopify://shop_images/FP1A7749_1.jpg",
+            "btn_text": "Shop Footwear",
+            "btn_link": "shopify://collections/footwear",
             "btn_style": "button--secondary"
           }
         },
         "featured_collection_z8jbcj": {
           "type": "featured_collection",
           "settings": {
-            "title": "Women’s",
-            "collection": "women-s-shoes",
-            "image": "shopify:\/\/shop_images\/collection2.jpg",
-            "btn_text": "Shop Women’s",
+            "title": "Apparel",
+            "collection": "apparel",
+            "image": "shopify://shop_images/KJ2A5124.jpg",
+            "btn_text": "Shop Apparel",
             "btn_link": "",
             "btn_style": "button--secondary"
+          }
+        },
+        "featured_collection_AC9tMY": {
+          "type": "featured_collection",
+          "disabled": true,
+          "settings": {
+            "title": "",
+            "collection": "",
+            "btn_text": "",
+            "btn_link": "",
+            "btn_style": "button--primary"
           }
         }
       },
       "block_order": [
         "featured_collection_XyKJ6j",
-        "featured_collection_z8jbcj"
+        "featured_collection_z8jbcj",
+        "featured_collection_AC9tMY"
       ],
       "custom_css": [
         ".collection-list {padding: 0;}",
@@ -98,7 +119,7 @@
         "text_alignment": "left",
         "container_width": 1720,
         "full_width": false,
-        "image_ratio": "adapt",
+        "image_ratio": "portrait",
         "columns_desktop": 2,
         "color_scheme": "",
         "show_view_all": false,
@@ -113,10 +134,10 @@
       "custom_css": [],
       "settings": {
         "color_scheme": "",
-        "title": "Explore Our Category 1",
+        "title": "Accessories",
         "title_size": "ts:!text-base",
         "weight": 400,
-        "collection": "wome-s-bag",
+        "collection": "accessories",
         "view_all": true,
         "view_link_label": "Explore Now",
         "view_all_style": "outline",
@@ -163,21 +184,21 @@
         "featured_collection_WitEJC": {
           "type": "featured_collection",
           "settings": {
-            "title": "Explore our Outerwear",
-            "collection": "men-s-bag",
-            "image": "shopify:\/\/shop_images\/collection3.jpg",
+            "title": "Explore our Pants",
+            "collection": "pants",
+            "image": "shopify://shop_images/FP1A7787.jpg",
             "btn_text": "Shop Outerwear",
-            "btn_link": "",
+            "btn_link": "shopify://collections/pants",
             "btn_style": "button--secondary"
           }
         },
         "featured_collection_mNJ8Aq": {
           "type": "featured_collection",
           "settings": {
-            "title": "Explore our Footwear",
-            "collection": "men-s-shoes",
-            "image": "shopify:\/\/shop_images\/collection4.jpg",
-            "btn_text": "Shop Footwear",
+            "title": "Explore our Accessories",
+            "collection": "accessories",
+            "image": "shopify://shop_images/FP1A7701.jpg",
+            "btn_text": "Shop Accessories",
             "btn_link": "",
             "btn_style": "button--secondary"
           }
@@ -198,7 +219,7 @@
         "text_alignment": "left",
         "container_width": 1720,
         "full_width": false,
-        "image_ratio": "adapt",
+        "image_ratio": "portrait",
         "columns_desktop": 2,
         "color_scheme": "",
         "show_view_all": false,
@@ -222,7 +243,7 @@
         "text_cGj4Xf": {
           "type": "text",
           "settings": {
-            "text": "<p>Maison Zeitaku is where refined craftsmanship meets modern luxury—each piece a statement of individuality, purpose, and enduring style.<\/p>"
+            "text": "<p>Maison Zeitaku is where refined craftsmanship meets modern luxury—each piece a statement of individuality, purpose, and enduring style.</p>"
           }
         }
       },
@@ -253,7 +274,7 @@
           "settings": {
             "title": "Explore our Accessories",
             "collection": "men-s-bag",
-            "image": "shopify:\/\/shop_images\/collection5.jpg",
+            "image": "shopify://shop_images/collection5.jpg",
             "btn_text": "Shop Mens",
             "btn_link": "",
             "btn_style": "button--secondary"
@@ -264,7 +285,7 @@
           "settings": {
             "title": "Explore our Bags",
             "collection": "wome-s-bag",
-            "image": "shopify:\/\/shop_images\/collection6.jpg",
+            "image": "shopify://shop_images/collection6.jpg",
             "btn_text": "Shop Women’s",
             "btn_link": "",
             "btn_style": "button--secondary"
@@ -275,6 +296,7 @@
         "featured_collection_eibEDb",
         "featured_collection_hpKfia"
       ],
+      "disabled": true,
       "custom_css": [
         ".collection-list {padding: 0;}",
         ".grid {--grid-mobile-vertical-spacing: 2rem;}",
@@ -298,12 +320,13 @@
     },
     "mz_featured_collection_wwHJgV": {
       "type": "mz_featured_collection",
+      "disabled": true,
       "settings": {
         "color_scheme": "",
-        "title": "Explore Our Category 2",
-        "title_size": "ts:!text-xl",
+        "title": "Bags",
+        "title_size": "ts:!text-base",
         "weight": 400,
-        "collection": "new-arrivals",
+        "collection": "bags",
         "view_all": true,
         "view_link_label": "Explore Now",
         "view_all_style": "outline",
@@ -350,9 +373,9 @@
         "column_hb9REx": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/service1.jpg",
+            "image": "shopify://shop_images/service1.jpg",
             "title": "Bespoke Personalization",
-            "text": "<p>Make your Maison Zeitaku piece truly your own. Select bags, luggage, belts, leather accessories, and...<\/p>",
+            "text": "<p>Make your Maison Zeitaku piece truly your own. Select bags, luggage, belts, leather accessories, and...</p>",
             "link_label": "Explore Personalization",
             "link": "#"
           }
@@ -360,9 +383,9 @@
         "column_ynaVcm": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/service2.jpg",
+            "image": "shopify://shop_images/service2.jpg",
             "title": "Reserve Your Appointment",
-            "text": "<p>Enjoy a personalized shopping experience with a dedicated Style Advisor. Book an appointment at your...<\/p>",
+            "text": "<p>Enjoy a personalized shopping experience with a dedicated Style Advisor. Book an appointment at your...</p>",
             "link_label": "Reserve Your Appointment",
             "link": "#"
           }
@@ -370,9 +393,9 @@
         "column_kkjAqJ": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/service3.jpg",
+            "image": "shopify://shop_images/service3.jpg",
             "title": "Boutique Pickup",
-            "text": "<p>Shop online and collect your order at a Maison Zeitaku boutique of your choice—seamlessly...<\/p>",
+            "text": "<p>Shop online and collect your order at a Maison Zeitaku boutique of your choice—seamlessly...</p>",
             "link_label": "Learn More",
             "link": "#"
           }
@@ -383,6 +406,7 @@
         "column_ynaVcm",
         "column_kkjAqJ"
       ],
+      "disabled": true,
       "custom_css": [
         "@media screen and (min-width: 750px) {.grid {--grid-desktop-horizontal-spacing: 6.5rem; }}"
       ],

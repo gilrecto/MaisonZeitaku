@@ -46,7 +46,7 @@
           </span>
         </fieldset>
       {%- elsif picker_type == 'button' -%}
-        <fieldset class="js product-form__input product-form__input--pill ts:grid ts:lg:grid-cols-7 ts:md:grid-cols-5 ts:grid-cols-4 ts:!max-w-full">
+        <fieldset class="js product-form__input product-form__input--pill ts:grid ts:lg:grid-cols-[repeat(7,minmax(max-content,1fr))] ts:md:grid-cols-[repeat(5,minmax(max-content,1fr))] ts:grid-cols-[repeat(4,minmax(max-content,1fr))] ts:!max-w-full">
           <legend class="form__label ts:sr-only">{{ option.name }}</legend>
           {% render 'product-variant-options',
             product: product,
