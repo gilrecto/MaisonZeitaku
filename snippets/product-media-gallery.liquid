@@ -12,6 +12,11 @@
 {% endcomment %}
 
 {%- liquid
+  assign stacked_thumbnail = false
+  if section.settings.gallery_layout == 'stacked_thumbnail'
+    assign stacked_thumbnail = true
+  endif
+
   if section.settings.hide_variants and variant_images.size == product.media.size
     assign single_media_visible = true
   endif
@@ -178,6 +183,12 @@
       assign is_not_limited_to_single_item = true
     endif
   -%}
+
+  {%- if stacked_thumbnail -%}
+    <div class="product-details--wrapper">
+    <div class="product-details--content product__column-sticky">
+  {%- endif -%}
+
   {%- if is_not_limited_to_single_item
     and media_count > 1
     and section.settings.gallery_layout contains 'thumbnail'
@@ -185,7 +196,7 @@
   -%}
     <slider-component
       id="GalleryThumbnails-{{ section.id }}"
-      class="thumbnail-slider slider-mobile-gutter quick-add-hidden{% unless section.settings.gallery_layout contains 'thumbnail' %} medium-hide large-up-hide{% endunless %}{% if section.settings.mobile_thumbnails != 'show' %} small-hide{% endif %}{% if media_count <= 3 %} thumbnail-slider--no-slide{% endif %}"
+      class="thumbnail-slider slider-mobile-gutter quick-add-hidden{% unless section.settings.gallery_layout contains 'thumbnail' %} medium-hide large-up-hide{% endunless %}{% if section.settings.mobile_thumbnails != 'show' %} small-hide{% endif %}{% if media_count <= 3 %} thumbnail-slider--no-slide{% endif %}"{% if stacked_thumbnail %} data-stacked-thumbnail{% endif %}
     >
       <button
         type="button"
@@ -330,6 +341,27 @@
         </span>
       </button>
     </slider-component>
+  {%- endif -%}
+  {%- if stacked_thumbnail -%}
+    <div class="product-actions ts:min-[1025px]:block ts:hidden ts:mt-8">
+      {%- assign product_form_id = 'product-form-' | append: section.id -%}
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'variant_picker' -%}
+            {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+          {%- when 'buy_buttons' -%}
+            {%- render 'buy-buttons',
+              block: block,
+              product: product,
+              product_form_id: product_form_id,
+              section_id: section.id,
+              show_pickup_availability: true
+            -%}
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+    </div>
+    </div>
   {%- endif -%}
 </media-gallery>
 

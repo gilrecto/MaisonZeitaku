@@ -79,13 +79,13 @@
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <div class="page-width ts:[@media(width>=750px)]:!px-0">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
-      <div class="grid__item product__media-wrapper ts:[@media(width<=749px)]:mb-4">
+      <div class="grid__item product__media-wrapper">
         {% render 'product-media-gallery', variant_images: variant_images %}
       </div>
-      <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} ts:xl:px-20 ts:lg:px-16 ts:[@media(width>=750px)]:!py-14 ts:[@media(width>=750px)]:!px-8">
+      <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <section
           id="ProductInfo-{{ section.id }}"
-          class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %} ts:!max-w-[50rem] ts:mx-auto ts:!top-40"
+          class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
         >
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
@@ -459,13 +459,13 @@
                 </div>
               {%- when 'popup' -%}
                 <modal-opener
-                  class="product-popup-modal__opener quick-add-hidden ts:!block ts:leading-none ts:py-4 ts:border-t ts:border-[rgba(var(--color-foreground),.08)]"
+                  class="product-popup-modal__opener quick-add-hidden"
                   data-modal="#PopupModal-{{ block.id }}"
                   {{ block.shopify_attributes }}
                 >
                   <button
                     id="ProductPopup-{{ block.id }}"
-                    class="{{ block.settings.text | handleize }}--popup-button product-popup-modal__button ts:no-underline ts:!text-xs ts:uppercase ts:font-semibold ts:!min-h-auto ts:w-full ts:text-left ts:!pr-0 ts:cursor-pointer"
+                    class="{{ block.settings.text | handleize }}--popup-button product-popup-modal__button"
                     type="button"
                     aria-haspopup="dialog"
                   >
@@ -2256,6 +2256,10 @@
         {
           "value": "stacked",
           "label": "t:sections.main-product.settings.gallery_layout.options__1.label"
+        },
+        {
+          "value": "stacked_thumbnail",
+          "label": "Stacked Centered"
         },
         {
           "value": "columns",

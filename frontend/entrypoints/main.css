@@ -1,4 +1,6 @@
 @import '../web/styles/mz_global_styles.css';
+@import '../web/styles/main_product.css';
+@import '../web/styles/product_gallery_centered.css';
 
 @import "tailwindcss" prefix(ts);
 

@@ -23,7 +23,7 @@ if (!customElements.get('media-gallery')) {
 
       onSlideChanged(event) {
         const thumbnail = this.elements.thumbnails.querySelector(
-          `[data-target="${event.detail.currentElement.dataset.mediaId}"]`
+          `[data-target="${event.detail.currentElement?.dataset.mediaId}"]`
         );
         this.setActiveThumbnail(thumbnail);
       }
@@ -58,7 +58,9 @@ if (!customElements.get('media-gallery')) {
           }
           const activeMediaRect = activeMedia.getBoundingClientRect();
           // Don't scroll if the image is already in view
-          if (activeMediaRect.top > -0.5) return;
+          if (!this.elements.thumbnails.hasAttribute('data-stacked-thumbnail')) {
+            if (activeMediaRect.top > -0.5) return;
+          }
           const top = activeMediaRect.top + window.scrollY;
           window.scrollTo({ top: top, behavior: 'smooth' });
         });
