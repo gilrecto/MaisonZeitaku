@@ -5,8 +5,11 @@
 	@apply ts:!max-w-full ts:mx-0;
 }
 .product.product--stacked_thumbnail .product__info-container variant-selects,
-.product.product--stacked_thumbnail .product__info-container product-form {
-	@apply ts:min-[1025px]:hidden;
+.product.product--stacked_thumbnail .product__info-container product-form,
+.product.product--stacked_thumbnail .product__info-container .product-popup-modal__opener,
+.product.product--stacked_thumbnail .product__info-container .product-condition,
+.product.product--stacked_thumbnail .product__info-container .product__accordion {
+	@apply ts:min-[1025px]:!hidden;
 }
 .product.product--stacked_thumbnail .product__media-wrapper {
 	@apply ts:min-[1025px]:flex-1 ts:min-[1025px]:!max-w-full ts:min-[1025px]:px-12;
