@@ -31,10 +31,12 @@
 .product-condition fieldset label {
 	@apply ts:flex-[1] ts:flex ts:flex-col ts:items-center ts:gap-2;
 }
-.product-condition fieldset input[type="radio"] {
+.product-condition fieldset input[type="radio"],
+.product-condition fieldset input[type="checkbox"] {
 	@apply ts:appearance-none ts:w-5 ts:h-5 ts:border ts:border-[rgba(var(--color-foreground))] ts:bg-[rgba(var(--color-background))] ts:rounded-full;
 }
-.product-condition fieldset input[type="radio"]:checked {
+.product-condition fieldset input[type="radio"]:checked,
+.product-condition fieldset input[type="checkbox"]:checked {
 	@apply ts:bg-[rgba(var(--color-foreground))];
 }
 .product-popup-modal__content-info > h1 {

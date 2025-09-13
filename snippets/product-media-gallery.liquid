@@ -410,7 +410,7 @@
                     {%- assign condition_label = condition | capitalize -%}
                     {% assign block_id = block.id | remove: "popup" %}
                     <label>
-                      <input id="{{ condition | append: block_id }}" type="radio" name="{{ condition_label }}" disabled="" {% if condition_label == product.metafields.data.product_condition %} checked=""{% endif %}>
+                      <input id="{{ condition | append: block_id }}--{{ section.id }}" type="checkbox" name="{{ condition_label }}" disabled="" {% if condition_label == product.metafields.data.product_condition %} checked=""{% endif %}>
                       <span>{{ condition_label }}</span>
                     </label>
                   {%- endfor -%}
